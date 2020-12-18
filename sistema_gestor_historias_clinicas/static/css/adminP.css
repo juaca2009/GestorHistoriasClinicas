@@ -20,6 +20,10 @@ body{
     background-color: var(--light-blue) !important;
 }
 
+.bg-light{
+    background-color: var(--blue) !important;
+}
+
 a:hover{
     text-decoration: none;
 }
