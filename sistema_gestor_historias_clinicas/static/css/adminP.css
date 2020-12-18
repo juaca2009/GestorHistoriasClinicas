@@ -1,0 +1,43 @@
+:root{
+    --blue: rgba(73, 156, 177, 0.891);
+    --blue-x: rgba(37, 114, 165, 0.733);
+    --light-blue: #c7eaee;
+    --white: #ffffff;
+    --white-x: #e8eef2;
+    --black: rgb(0, 0, 0);
+} 
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--black);
+    background-color: var(--white);
+    overflow: hidden;
+}
+
+.bg-primary{
+    background-color: var(--light-blue) !important;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#sidebar-container{
+    min-height: 100vh;
+}
+
+#sidebar-container{
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .menu{
+    width: 18rem;
+}
+
+@media (max-width: 768px){
+    #sidebar-container{
+        display: none;
+    }
+}

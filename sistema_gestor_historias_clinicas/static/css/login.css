@@ -1,0 +1,69 @@
+:root{
+    --blue: rgba(73, 156, 177, 0.891);
+    --blue-x: rgba(37, 114, 165, 0.733);
+    --light-blue: #c7eaee;
+    --white: #ffffff;
+    --white-x: #e8eef2;
+    --black: rgb(0, 0, 0);
+} 
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--black);
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+.logo{
+    width: 100px;
+    height: 60px;
+}
+
+.bg-light{
+    background-color: var(--blue) !important;
+}
+
+.bg-dark{
+    background-color: var(--blue) !important;
+}
+
+.bg-formulario{
+	background-color: var(--white);
+}
+
+.form-control, .btn{
+	min-height: 3.125rem;
+	line-height: initial;
+}
+
+.img-1{
+	background-image: url('/sistema_gestor_historias_clinicas/static/imagenes/img-login.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.btn-color{
+	background-color: var(--blue);
+	color: var(--black);
+}
+
+.btn{
+    font-weight: 700;
+    padding: .8rem, 1rem;
+    border: 0;
+    border-radius: .4rem;
+}
+
+.btn-color:hover{
+	background: linear-gradient(90deg, var(--blue) 0%, var(--blue-x) 100%);
+    color: var(--black);
+    opacity: .8;
+}
+
+.titulo{
+    font-size: 1rem;
+    font-weight: 300;
+}
+

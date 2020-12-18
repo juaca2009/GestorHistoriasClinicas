@@ -1,0 +1,26 @@
+:root{
+    --blue: rgba(73, 156, 177, 0.891);
+    --blue-x: rgba(37, 114, 165, 0.733);
+    --light-blue: #c7eaee;
+    --white: #ffffff;
+    --white-x: #e8eef2;
+    --white-xx: #d2dee6;
+    --black: rgb(0, 0, 0);
+} 
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--black);
+    background-color: var(--white-xx);
+    overflow-x: hidden;
+}
+
+.bg-light{
+    background-color: var(--blue) !important;
+}
+
+.bg-form{
+    background-color: var(--white);
+}
