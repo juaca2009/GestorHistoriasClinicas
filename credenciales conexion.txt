@@ -1,0 +1,11 @@
+*credenciales shh:
+--cadena de conexion:
+  ssh juancamilo99@ssh-juancamilo99.alwaysdata.net 
+--contraseña:
+  JuanCamilo99@gestor12345
+
+*credenciales mysql:
+--cadena de conexion:
+  mysql -h mysql-juancamilo99.alwaysdata.net -u 222146 -p juancamilo99_historiasc
+--contraseña:
+  juancamilo99@
