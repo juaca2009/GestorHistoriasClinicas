@@ -49,7 +49,8 @@ create table administrador_general(
     apellidos varchar(80) not null,
     correo varchar(50),
     telefono varchar(10) not null,
-    cod_postal int references ciudad(codigo_postal)
+    cod_postal int references ciudad(codigo_postal),
+    contrasena varchar(10) not null
 );
 
 --tabla medicos
@@ -61,7 +62,8 @@ create table medicos(
     correo varchar(50),
     telefono varchar(10) not null,
     id_clinica int references clinicas(id),
-    id_espc int references tipo_especializacion(id)
+    id_espc int references tipo_especializacion(id),
+    contrasena varchar(10) not null
 );
 
 -- tabla administradores clinicos
@@ -72,7 +74,8 @@ create table administrador_clinica(
     apellidos varchar(80) not null,
     correo varchar(50),
     telefono varchar(10) not null,
-    id_clinica int references clinicas(id)
+    id_clinica int references clinicas(id),
+    contrasena varchar(10) not null
 );
 
 -- tabla historias clinicas 
@@ -107,5 +110,6 @@ create table paciente(
     correo varchar(50),
     telefono varchar(10) not null,
     id_clinica int references clinicas(id),
-    id_historias int references historias_clinicas(id)
+    id_historias int references historias_clinicas(id),
+    contrasena varchar(10) not null
 );
