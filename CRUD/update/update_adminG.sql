@@ -1,4 +1,4 @@
---funcion encargada de actualizar la informacion personal de los medicos 
+--funcion encargada de actualizar la informacion personal de los administradores generales
 --retorna 0 si la operacion fue exitosa, retorna 1 si no se proporciona un telefono
 --retorna 2 si no se proporciona una contraseña
 delimiter //
