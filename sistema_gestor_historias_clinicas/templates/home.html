@@ -13,7 +13,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-            <a class="navbar-brand font-weight-bold" href="#">Hermes Clinics</a>
+            <a class="navbar-brand font-weight-bold" href="{{ url_for('home') }}">Hermes Clinics</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,13 +21,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item mr-3">
-                  <a class="nav-link" href="#">Pagina Principal <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{{ url_for('home') }}">Pagina Principal <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item  mr-3">
-                  <a class="nav-link" href="#">Registre su Clinica</a>
+                  <a class="nav-link" href="{{ url_for('registro_clinico') }}">Registre su Clinica</a>
                 </li>
                 <li class="nav-item  mr-3">
-                  <a class="nav-link font-weight-bold text-black" href="#">Inico de Sesion</a>
+                  <a class="nav-link font-weight-bold text-black" href="{{ url_for('inicio_sesion') }}">Inico de Sesion</a>
                 </li>
               </ul>
             </div>
@@ -43,8 +43,8 @@
                             hasta gestionar los horarios de las citas medicas, entre otras muchas otras cosas.
                         </p>
                         <div>
-                            <a href="#" class="btn btn-primary mr-2 mb-3">Inicia Sesion</a>
-                            <a href="#" class="btn btn-secondary mb-3">Registre su Clinica</a>
+                            <a href="{{ url_for('inicio_sesion') }}" class="btn btn-primary mr-2 mb-3">Inicia Sesion</a>
+                            <a href="{{ url_for('registro_clinico') }}" class="btn btn-secondary mb-3">Registre su Clinica</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
