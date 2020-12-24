@@ -13,24 +13,24 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-            <a class="navbar-brand font-weight-bold" href="{{ url_for('home') }}">Hermes Clinics</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+                <a class="navbar-brand font-weight-bold link-color" href="{{ url_for('home') }}">Hermes Clinics</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
           
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-3">
-                  <a class="nav-link" href="{{ url_for('home') }}">Pagina Principal <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item  mr-3">
-                  <a class="nav-link" href="{{ url_for('registro_clinico') }}">Registre su Clinica</a>
-                </li>
-                <li class="nav-item  mr-3">
-                  <a class="nav-link font-weight-bold text-black" href="{{ url_for('inicio_sesion') }}">Inico de Sesion</a>
-                </li>
-              </ul>
-            </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-3">
+                            <a class="nav-link link-color" href="{{ url_for('home') }}">Pagina Principal <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item  mr-3">
+                            <a class="nav-link link-color" href="{{ url_for('registro_clinico') }}">Registre su Clinica</a>
+                        </li>
+                        <li class="nav-item  mr-3">
+                            <a class="nav-link font-weight-bold link-color" href="{{ url_for('inicio_sesion') }}">Inico de Sesion</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <section class="py-5">
@@ -55,13 +55,13 @@
         </section>
         <section class="body2 py-5 d-flex">
             <div class="container aling-self-center">
-                <div class="w-75 text-center mx-auto md-5">
+                <div class="w-75 text-center mx-auto md-5 text-primary">
                     <h2 class="font-weight-bold">Servicios de Hermes Clinics</h2>
                     <p>Hermes Clinics ofrece una gran variedad de servicios para todo el personal de su clinica</p>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card card-bg-color">
                             <div class="card-body">
                                 <small class="font-weight-bold"> Medicos y Enfermeros</small>
                                 <h2 class="font-weight-bold mb-4"> Personal Medico</h2>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card card-bg-color">
                             <div class="card-body">
                                 <small class="font-weight-bold">Administradores</small>
                                 <h2 class="font-weight-bold mb-4">Administradores</h2>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card card-bg-color">
                             <div class="card-body">
                                 <small class="font-weight-bold">Pacientes</small>
                                 <h2 class="font-weight-bold mb-4">Pacientes</h2>

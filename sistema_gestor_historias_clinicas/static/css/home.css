@@ -3,7 +3,7 @@
     --blue-x: #0085FF;
     --light-blue: #85c3FF;
     --white: #ffffff;
-    --white-x: #EEEEEE;
+    --white-x: #dcdcdc;
     --black: rgb(0, 0, 0);
 } 
 
@@ -11,7 +11,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 300;
-    color: var(--black);
+    color: var(--white);
     background-color: var(--white);
 }
 
@@ -47,13 +47,13 @@ body{
 }
 
 .btn-primary{
-    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-x) 100%);
-    color: var(--black);
+    background: var(--blue);
+    color: var(--white);
 }
 
 .btn-secondary{
-    background-color: var(--light-blue);
-    color: var(--black);
+    background-color: var(--blue);
+    color: var(--white);
 }
 
 .btn-secondary:hover{
@@ -62,7 +62,7 @@ body{
 }
 
 .btn-primary:hover{
-    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-x) 100%);
+    background: var(--light-blue);
     color: var(--black);
     opacity: .8;
 }
@@ -78,7 +78,7 @@ body{
 }
 
 .link-color{
-    color: var(--white)
+    color: var(--white) !important
 }
 
 .card{
@@ -92,3 +92,6 @@ body{
 	background-position: center;
 }
 
+.card-bg-color{
+    background-color: var(--blue);
+}
