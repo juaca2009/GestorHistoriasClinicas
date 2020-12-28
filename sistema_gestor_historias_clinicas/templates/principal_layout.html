@@ -9,7 +9,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet"> 
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="../static/imagenes/clinico.ico">
-        <title>Hermes Home</title>
+        {% if titulo %}
+            <title>Hermes Home - {{ titulo }}</title>
+        {% else %}
+            <title>Hermes Home</title>
+        {% endif %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
