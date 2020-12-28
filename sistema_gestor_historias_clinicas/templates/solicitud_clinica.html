@@ -31,11 +31,9 @@
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1" class="text-black font-weight-bold">Ciudad donde Opera</label>
                                     <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>Cali-Valle del Cauca</option>
-                                      <option>Bogota-Cundinamarca</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
+                                      {% for i in ciudad %}
+                                        <option>{{ i }}</option>
+                                      {% endfor %}
                                     </select>
                                 </div>
                             </div>
