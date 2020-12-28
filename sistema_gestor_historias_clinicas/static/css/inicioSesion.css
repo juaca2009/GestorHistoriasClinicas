@@ -1,0 +1,81 @@
+:root{
+    --blue: #23374d;
+    --blue-x: #0085FF;
+    --light-blue: #85c3FF;
+    --white: #ffffff;
+    --white-x: #dcdcdc;
+    --black: rgb(0, 0, 0);
+} 
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--white);
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+.logo{
+    width: 100px;
+    height: 60px;
+}
+
+.navbar{
+    min-height: 5rem;
+}
+
+.bg-light{
+    background-color: var(--blue) !important;
+}
+
+.bg-dark{
+    background-color: var(--blue) !important;
+}
+
+.bg-formulario{
+	background-color: var(--white);
+}
+
+.form-control, .btn{
+	min-height: 3.125rem;
+	line-height: initial;
+}
+
+.img-1{
+	background-image: url("../imagenes/img-login.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.btn-color{
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.btn{
+    font-weight: 700;
+    padding: .8rem, 1rem;
+    border: 0;
+    border-radius: .4rem;
+}
+
+.btn-color:hover{
+	background: var(--light-blue);
+    color: var(--black);
+    opacity: .8;
+}
+
+.titulo{
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.link-color{
+    color: var(--white) !important
+}
+
+.text-black{
+    color: var(--black) !important;
+}
+
