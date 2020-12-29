@@ -13,7 +13,8 @@ app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
 # Setup the Flask-JWT-Extended extension
-app.config['JWT_SECRET_KEY'] = 'mySecretKey'
+app.config['JWT_SECRET_KEY'] = 'b56cde8c29107c55dce5f0ff90c59d12'
+app.config['SECRET_KEY'] = 'b56cde8c29107c55dce5f0ff90c59d12'
 app.config['JWT_ALGORITHM'] = 'HS512'
 app.config['JWT_EXP_DELTA_SECONDS'] = 60
 jwt = JWTManager(app)
