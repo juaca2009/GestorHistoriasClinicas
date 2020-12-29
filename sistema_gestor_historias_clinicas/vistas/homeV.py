@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
 from app import app
 from services.home_service import home_service
+from dtos.homeDtos.solicitudClinicaDto import solicitudClinicaDto
 
 home_vista = Blueprint('home_vista', __name__)
 
@@ -18,5 +19,7 @@ def inicio_sesion():
 
 @app.route("/registroClinico", methods = ["GET", "POST"])
 def registro_clinico():
+    form = solicitudClinicaDto()
     ciudades = services_home.obtener_Tciudades()
+    form.ciudadC.choices = ciudades #asignacion de tuplas para el form dinamico select
     return render_template("solicitud_clinica.html", titulo='Registro Clinico', ciudad=ciudades)
