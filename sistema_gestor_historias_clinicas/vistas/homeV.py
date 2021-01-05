@@ -22,4 +22,7 @@ def registro_clinico():
     form = solicitudClinicaDto()
     ciudades = services_home.obtener_Tciudades()
     form.ciudadC.choices = ciudades #asignacion de tuplas para el form dinamico select
-    return render_template("solicitud_clinica.html", titulo='Registro Clinico', ciudad=ciudades)
+    if form.validate_on_submit():
+        flash(f'La solicitud para {form.nombreC.data} ha sido enviada', 'success')
+        return redirect(url_for('home'))
+    return render_template("solicitud_clinica.html", titulo='Registro Clinico', form=form)

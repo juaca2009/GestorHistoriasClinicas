@@ -11,4 +11,4 @@ class solicitudClinicaDto(FlaskForm):
                          coerce=str, validators=[DataRequired()])
     direccionC = StringField('direccionC', 
                             validators=[DataRequired(), Length(min=8, max=30)])
-    submit = SubmitField('solicitud')
+    submit = SubmitField('Enviar Solicitud')
