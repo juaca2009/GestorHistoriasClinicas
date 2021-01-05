@@ -16,16 +16,34 @@
                             Solicitud para Registrar su Clinica
                         </h1>
                     </div>
-                    <form method="POST" action="">
+                    <form method="POST" action="" novalidate>
                         {{ form.hidden_tag() }}
                         <div class="form-group mb-4">
                           <label for="exampleInputEmail1" class="form-label text-black font-weight-bold">Direccion de Correo*</label>
-                          {{ form.email(class="form-control", placeholder="Ingrese un correo institucional", id="exampleInputEmail1", type="email") }}
-                          <small id="emailHelp" class="form-text text-muted">Provea un correo valido de su clinica</small>
+                          <small id="emailHelp" class="form-text text-muted">Provea un correo valido de su clinica por el cual podamos comunicarnos</small>
+                          {% if form.email.errors %}
+                            {{ form.email(class="form-control is-invalid", placeholder="Ingrese un correo institucional", id="exampleInputEmail1", type="email") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form.email(class="form-control", placeholder="Ingrese un correo institucional", id="exampleInputEmail1", type="email") }}
+                          {% endif %}
                         </div>
                         <div class="form-group mb-4">
                           <label for="exampleInputPassword1" class="form-label text-black font-weight-bold">Nombre  de la Clinica o Institucion*</label>
-                          {{ form.nombreC(class="form-control mb-2", placeholder="Ingrese el nombre de la clinica o institucion", id="exampleInputPassword1", type="text") }}
+                          {% if form.nombreC.errors %}
+                          {{ form.nombreC(class="form-control mb-2 is-invalid", placeholder="Ingrese el nombre de la clinica o institucion", id="exampleInputPassword1", type="text") }}
+                          <div class="invalid-feedback">
+                            {% for error in form.nombreC.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                          {% else %}
+                            {{ form.nombreC(class="form-control mb-2", placeholder="Ingrese el nombre de la clinica o institucion", id="exampleInputPassword1", type="text") }}
+                          {% endif %}
                         </div>
                         <div class="row">
                             <div class="col">
@@ -37,7 +55,17 @@
                             <div class="col">
                                 <div class="form-group mb-4">
                                     <label for="exampleInputPassword1" class="form-label text-black font-weight-bold">Direccion  de la Clinica*</label>
-                                    {{ form.direccionC(class="form-control mb-2", placeholder="Ingrese la direccion de la clinica", id="exampleInputPassword1", type="text") }}
+                                    <small id="emailHelp" class="form-text text-muted">Provea una direccion valida</small>
+                                    {% if form.direccionC.errors %}
+                                        {{ form.direccionC(class="form-control mb-2 is-invalid", placeholder="Ingrese la direccion de la clinica", id="exampleInputPassword1", type="text") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.direccionC.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.direccionC(class="form-control mb-2", placeholder="Ingrese la direccion de la clinica", id="exampleInputPassword1", type="text") }}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
