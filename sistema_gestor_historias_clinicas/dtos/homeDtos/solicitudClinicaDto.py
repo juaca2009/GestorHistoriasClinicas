@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField
+from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Length, Email
 
 class solicitudClinicaDto(FlaskForm):
@@ -11,3 +11,4 @@ class solicitudClinicaDto(FlaskForm):
                          coerce=str, validators=[DataRequired()])
     direccionC = StringField('direccionC', 
                             validators=[DataRequired(), Length(min=8, max=30)])
+    submit = SubmitField('solicitud')
