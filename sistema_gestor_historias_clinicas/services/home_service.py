@@ -22,3 +22,7 @@ class home_service():
             grupo_ciudades.append(temp)
             cont = cont + 1
         return grupo_ciudades
+
+    def insertar_solicitudC(self, _nombre, _direccion, _ciudad, _correo):
+        salida = self.__HomeRepo.insertar_solicitudC(_nombre, _direccion, _ciudad, _correo)
+        return list(salida[0].values())
