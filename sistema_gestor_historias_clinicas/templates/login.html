@@ -13,28 +13,56 @@
 				</div>
 				<div class="col-lg-5 bg-formulario d-flex flex-column align-items-end min-vh-100 mb-auto">
 					<div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
+						{% with messages = get_flashed_messages(with_categories=true) %}
+            				{% if messages %}
+               					 {% if bandLogin != "" %}
+                    				{% for category, message in messages  %}
+                        				<div class="alert alert-{{ category }} alert-dismissible fade show">
+                            				{{ message }}
+                            				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            					<span aria-hidden="true">&times;</span>
+                            				</button>
+                        				</div>
+                    				{% endfor %}
+                				{% endif %}
+            				{% endif %}
+        				{% endwith %}
 						<h1 class="font-weight-bold text-black mb-4 mt-5">
 							Bienvenido.
 						</h1>
-						<form>
+						<form method="POST" action="" novalidate>
+							{{ form.hidden_tag() }}
 							<div class="form-group mb-4">
 							  <label for="emailI" class="form-label text-black font-weight-bold">Direccion de Correo</label>
-							  <input type="email" class="form-control" placeholder="Ingrese su correo electronico" id="emailI" aria-describedby="emailHelp">
-							  <small id="emailHelp" class="form-text text-muted">Su informacion no sera compartida con nadie mas.</small>
+							  {% if form.email.errors %}
+								  {{ form.email(class="form-control is-invalid", type="email", placeholder="Ingrese su correo electronico") }}
+								  <div class="invalid-feedback">
+									{% for error in form.email.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							  {% else %}
+							  	{{ form.email(class="form-control", type="email", placeholder="Ingrese su correo electronico") }}
+							  {% endif %}	  
 							</div>
 							<div class="form-group mb-4">
 							  <label for="exampleInputPassword1" class="form-label text-black font-weight-bold">Contraseña</label>
-							  <input type="password" class="form-control mb-2"  placeholder="Ingrese su contraseña" id="exampleInputPassword1">
+							  {% if form.contra.errors %}
+								{{ form.contra(class="form-control mb-2 is-invalid", type="password", placeholder="Ingrese su contraseña") }}
+								<div class="invalid-feedback">
+									{% for error in form.contra.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							  {% else %}
+							  	{{ form.contra(class="form-control mb-2", type="password", placeholder="Ingrese su contraseña") }}
+							  {% endif %}
+							  
 							  <small id="emailHelp" class="form-text text-black text-muted"><a href="#" class="text-muted">¿Ha olvidado su contraseña?</a></small>
 							</div>
 							<div class="from-group mb-4">
 								<label for="tipoI" class="form-label text-black font-weight-bold">Seleccione el Tipo de Usuario</label>
-								<select class="form-control" id="tipoI">
-									<option>Paciente</option>
-									<option>Medico</option>
-									<option>Administrador Clinico</option>
-									<option>Administrador del Sistema</option>
-								</select>
+								{{ form.tipoL(class="form-control", id="tipoI") }}
 							</div>
 							<button type="submit" class="btn btn-primary w-100 btn-color font-weight-bold mb-4">Iniciar sesion</button>
 						  </form>
