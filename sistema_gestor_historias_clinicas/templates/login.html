@@ -14,17 +14,15 @@
 				<div class="col-lg-5 bg-formulario d-flex flex-column align-items-end min-vh-100 mb-auto">
 					<div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
 						{% with messages = get_flashed_messages(with_categories=true) %}
-            				{% if messages %}
-               					 {% if bandLogin != "" %}
-                    				{% for category, message in messages  %}
-                        				<div class="alert alert-{{ category }} alert-dismissible fade show">
-                            				{{ message }}
-                            				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            					<span aria-hidden="true">&times;</span>
-                            				</button>
-                        				</div>
-                    				{% endfor %}
-                				{% endif %}
+            				{% if messages and bandLogin != ""%}
+                    			{% for category, message in messages  %}
+                        			<div class="alert alert-{{ category }} alert-dismissible fade show">
+                            			{{ message }}
+                            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            				<span aria-hidden="true">&times;</span>
+                            			</button>
+                        			</div>
+                    			{% endfor %}
             				{% endif %}
         				{% endwith %}
 						<h1 class="font-weight-bold text-black mb-4 mt-5">
@@ -64,7 +62,7 @@
 								<label for="tipoI" class="form-label text-black font-weight-bold">Seleccione el Tipo de Usuario</label>
 								{{ form.tipoL(class="form-control", id="tipoI") }}
 							</div>
-							<button type="submit" class="btn btn-primary w-100 btn-color font-weight-bold mb-4">Iniciar sesion</button>
+							{{ form.submit(class="btn btn-primary w-100 btn-color font-weight-bold mb-4", type="submit")  }}
 						  </form>
 					</div>
 				</div>

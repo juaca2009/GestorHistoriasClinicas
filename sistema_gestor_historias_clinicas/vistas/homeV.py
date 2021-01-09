@@ -17,9 +17,11 @@ def home():
 def inicio_sesion():
     form = loginDto()
     if form.validate_on_submit():
-        print(1)
-    else:
-        flash(f'error', 'danger')
+        inicio = False
+        if inicio == True:
+            print("1")
+        else:
+            flash(f'error', 'danger')
     return render_template("login.html", titulo='Inicio Sesion', form=form, bandLogin="1")
 
 
