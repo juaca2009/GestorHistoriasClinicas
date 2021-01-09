@@ -21,9 +21,7 @@ body{
     height: 60px;
 }
 
-.navbar{
-    min-height: 5rem;
-}
+
 
 .bg-light{
     background-color: var(--blue) !important;
