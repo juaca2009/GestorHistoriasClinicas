@@ -10,3 +10,4 @@ class loginDto(FlaskForm):
     tipoL = SelectField('ciudadC', 
                          choices=[('paciente',"Paciente"),('medico',"Medico"), ('aClinico', "Administrador Clinico"), ('aSistema', "Administrador del Sistema")], 
                          validators=[DataRequired("Rellene este campo")])
+    submit = SubmitField('Inicar Sesion')
