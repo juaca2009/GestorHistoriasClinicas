@@ -5,4 +5,4 @@ admin_vista = Blueprint('admin_vista', __name__)
 
 @app.route("/admin", methods = ["GET", "POST"])
 def adminHome():
-    return render_template("adminP.html")
+    return render_template("adminP_admin.html", titulo='Admin Sistema')
