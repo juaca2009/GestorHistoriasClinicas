@@ -18,3 +18,7 @@ def adminSolicitudesClinicas():
 @app.route("/admin/admins/eliminar", methods = ["GET", "POST"])
 def adminAdminDel():
     return render_template("adminP/adminP_adminDel.html", titulo='Admin Sistema')
+
+@app.route("/admin/admins/actualizar", methods = ["GET", "POST"])
+def adminAdminUp():
+    return render_template("adminP/adminP_adminUp.html", titulo='Admin Sistema')

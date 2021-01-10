@@ -1,0 +1,62 @@
+{% extends "adminP/adminP_layout.html" %}
+
+{% block cssPers %}
+  <link  rel="stylesheet" href="{{ url_for('static', filename='css/adminP_adminUp.css') }}" type="text/css">
+{% endblock cssPers %}
+
+{% block contenido %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb nav-route">
+            <li class="breadcrumb-item"><a href="{{ url_for('adminAdmin') }}">Administradores del Sistema</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Actualizar Administrador del Sistema</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 bg-form">
+            <h1 class="font-weight-bold text-black form-style-title mb-5 text-center mt-3"> Actualizar el administrador nombre </h1>
+            <form method="POST" action="" novalidate>
+                <div class="form-group mb-4">
+                    <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nro Documento</label>
+                    <input class="form-control" type="text" placeholder="un numero" readonly>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nombres</label>
+                            <input class="form-control" type="text" placeholder="un nombre" readonly>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Apellidos</label>
+                            <input class="form-control" type="text" placeholder="un apellido" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Ciudad</label>
+                    <input class="form-control" type="text" placeholder="una ciudad">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Correo</label>
+                            <input class="form-control" type="text" placeholder="un nombre">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Telefono/Celular</label>
+                            <input class="form-control" type="text" placeholder="un apellido">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <button class="btn btn-warning font-weight-bold w-100" type="submit"> Actualizar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+{% endblock contenido %}
