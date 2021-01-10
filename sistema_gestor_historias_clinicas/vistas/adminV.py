@@ -22,3 +22,7 @@ def adminAdminDel():
 @app.route("/admin/admins/actualizar", methods = ["GET", "POST"])
 def adminAdminUp():
     return render_template("adminP/adminP_adminUp.html", titulo='Admin Sistema')
+
+@app.route("/admin/admins/informacion", methods = ["GET", "POST"])
+def adminAdmininfo():
+    return render_template("adminP/adminP_adminInfo.html", titulo='Admin Sistema')
