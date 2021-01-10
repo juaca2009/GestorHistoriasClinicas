@@ -5,16 +5,16 @@ admin_vista = Blueprint('admin_vista', __name__)
 
 @app.route("/admin/admins", methods = ["GET", "POST"])
 def adminAdmin():
-    return render_template("adminP_admin.html", titulo='Admin Sistema')
+    return render_template("adminP/adminP_admin.html", titulo='Admin Sistema')
 
 @app.route("/admin/clinicas", methods = ["GET", "POST"])
 def adminClinicas():
-    return render_template("adminP_clinicas.html", titulo='Admin Sistema')
+    return render_template("adminP/adminP_clinicas.html", titulo='Admin Sistema')
 
 @app.route("/admin/solicitudesClinicas", methods = ["GET", "POST"])
 def adminSolicitudesClinicas():
-    return render_template("adminP_solicitudes.html", titulo='Admin Sistema')
+    return render_template("adminP/adminP_solicitudes.html", titulo='Admin Sistema')
 
 @app.route("/admin/admins/eliminar", methods = ["GET", "POST"])
 def adminAdminDel():
-    return render_template("adminP_adminDel.html", titulo='Admin Sistema')
+    return render_template("adminP/adminP_adminDel.html", titulo='Admin Sistema')

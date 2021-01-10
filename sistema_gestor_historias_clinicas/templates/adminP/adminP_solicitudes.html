@@ -1,23 +1,20 @@
-{% extends "adminP_layout.html" %}
-
+{% extends "adminP/adminP_layout.html" %}
 {% block contenido %}
                 <nav aria-label="breadcrumb mb-4">
                     <ol class="breadcrumb nav-route">
-                        <li class="breadcrumb-item active" aria-current="page">Administradores del Sistema</li>
+                        <li class="breadcrumb-item active" aria-current="page">Solicitudes Clinicas</li>
                     </ol>
                 </nav>
-                <div class="ml-3 mb-4">
-                    <a class="btn btn-success font-weight-bold" href="#" role="button"><i class="icon ion-md-add mr-3 lead"></i>Registrar Nuevo Administrador</a>
-                </div>
                 <div class="table-responsive ml-4">
                     <table class="table table-hover table-sm">
                         <thead>
                           <tr>
-                            <th scope="col">Nro documento</th>
-                            <th scope="col">Nombres</th>
-                            <th scope="col">Apellidos</th>
+                            <th scope="col">id Solicitud</th>
+                            <th scope="col">Nombre</th>
                             <th scope="col">Ciudad</th>
-                            <th scope="col">Mas Informacion</th>
+                            <th scope="col">Cantidad de Pacientes</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -25,12 +22,15 @@
                             <th scope="row">1</th>
                             <td>Mark</td>
                             <td>Otto</td>
+                            <td>@mdo</td>
                             <td>aaa</td>
                             <td>
                                 <div class="w-10">
-                                    <a class="btn btn-danger btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdminDel') }}" role="button">Eliminar</a>
-                                    <a class="btn btn-warning btn-sm d-block mb-1 mr-5" href="#" role="button">Actualizar</a>
-                                    <a class="btn btn-info btn-sm d-block mb-1 mr-5" href="#" role="button">Mas Informacion</a>
+                                    <form method="POST" action="" novalidate>
+                                        <button class="btn btn-success font-weight-bold" type="submit"> Aceptar</button>
+                                        <button class="btn btn-danger  font-weight-bold" type="submit"> Denegar</button>
+                                    </form>
+    
                                 </div>
                             </td>
                           </tr>
