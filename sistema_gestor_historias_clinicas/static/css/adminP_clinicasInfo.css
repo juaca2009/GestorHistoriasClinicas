@@ -1,0 +1,40 @@
+:root{
+    --blue: #23374d;
+    --blue-x: #0085FF;
+    --light-blue: #85c3FF;
+    --white: #ffffff;
+    --white-x: #dcdcdc;
+    --black: rgb(0, 0, 0);
+} 
+
+tbody{
+    background-color: var(--white-x);
+}
+
+.form-style-title{
+    color: var(--black);
+    font-size: medium;
+}
+
+.form-style-body{
+    color: var(--black) !important;
+}
+
+.form-title-style{
+    margin-top: 10px;
+}
+
+.bg-form{
+    background-color: var(--white-x);
+}
+
+.form-control:focus {
+    border-color: var(--blue-x);
+    border-width: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+.form-title{
+    height: 25px;
+}

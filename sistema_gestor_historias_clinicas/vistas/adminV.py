@@ -26,3 +26,7 @@ def adminAdminUp():
 @app.route("/admin/admins/informacion", methods = ["GET", "POST"])
 def adminAdmininfo():
     return render_template("adminP/adminP_adminInfo.html", titulo='Admin Sistema')
+
+@app.route("/admin/clinicas/informacion", methods = ["GET", "POST"])
+def adminCliniasInfo():
+    return render_template("adminP/adminP_clinicasInfo.html", titulo='Admin Sistema')
