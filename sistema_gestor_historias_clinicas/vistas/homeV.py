@@ -10,7 +10,7 @@ services_home = home_service()
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
-    return render_template("home.html", bandLogin="")
+    return render_template("home/home.html", bandLogin="")
 
 
 @app.route("/inicioSesion", methods = ["GET", "POST"])
@@ -22,7 +22,7 @@ def inicio_sesion():
             print("1")
         else:
             flash(f'error', 'danger')
-    return render_template("login.html", titulo='Inicio Sesion', form=form, bandLogin="1")
+    return render_template("home/login.html", titulo='Inicio Sesion', form=form, bandLogin="1")
 
 
 @app.route("/registroClinico", methods = ["GET", "POST"])
@@ -37,4 +37,4 @@ def registro_clinico():
             return redirect(url_for('home'))
         else:
             flash(f'La solicitud para {form.nombreC.data} ya ha sido enviada o la clinica ya esta registrada.', 'danger')
-    return render_template("solicitud_clinica.html", titulo='Registro Clinico', form=form, bandLogin="")
+    return render_template("home/solicitud_clinica.html", titulo='Registro Clinico', form=form, bandLogin="")
