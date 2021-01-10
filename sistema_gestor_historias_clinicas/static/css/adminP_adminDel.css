@@ -5,6 +5,7 @@
     --white: #ffffff;
     --white-x: #dcdcdc;
     --black: rgb(0, 0, 0);
+    --red: #f3868662;
 } 
 
 .form-style-title{
@@ -19,3 +20,10 @@
 .bg-form{
     background-color: var(--white-x);
 }
+
+.form-control:focus {
+    border-color: var(--red);
+    border-width: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
