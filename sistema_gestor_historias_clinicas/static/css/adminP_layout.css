@@ -16,6 +16,10 @@ body{
     overflow: hidden;
 }
 
+thead{
+    background-color: var(--light-blue);
+}
+
 .bg-primary{
     background-color: var(--blue) !important;
 }
