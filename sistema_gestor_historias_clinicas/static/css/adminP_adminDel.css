@@ -1,0 +1,21 @@
+:root{
+    --blue: #23374d;
+    --blue-x: #0085FF;
+    --light-blue: #85c3FF;
+    --white: #ffffff;
+    --white-x: #dcdcdc;
+    --black: rgb(0, 0, 0);
+} 
+
+.form-style-title{
+    color: var(--black);
+    font-size: medium;
+}
+
+.form-style-body{
+    color: var(--black) !important;
+}
+
+.bg-form{
+    background-color: var(--white-x);
+}
