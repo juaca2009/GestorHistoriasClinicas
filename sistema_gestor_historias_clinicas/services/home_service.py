@@ -1,6 +1,7 @@
 from repository.home_repository import home_repository
+from dominios.dominio import paciente, medicos, administrador_clinica, administrador_general, ciudad, departamentos
 
-class home_service():
+class home_service(ciudad):
     def __init__(self):
         self.__HomeRepo = home_repository()
 
