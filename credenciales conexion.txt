@@ -8,4 +8,4 @@
 --cadena de conexion:
   mysql -h mysql-juancamilo99.alwaysdata.net -u 222146 -p juancamilo99_historiasc
 --contraseña:
-  juancamilo99@
+  juancamilo99
