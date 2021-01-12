@@ -29,8 +29,7 @@ create table solicitudes(
     nombre varchar(60) not null,
     direccion varchar(30),
     cod_postal int references ciudad(codigo_postal),
-    correo varchar(50) not null,
-    cant_personas int
+    correo varchar(50) not null
 );
 
 -- tabla clinicas 
@@ -109,7 +108,6 @@ create table paciente(
     apellidos varchar(80) not null,
     correo varchar(50),
     telefono varchar(10) not null,
-    id_clinica int references clinicas(id),
     id_historias int references historias_clinicas(id),
     contrasena varchar(10) not null
 );
