@@ -1,8 +1,11 @@
-from repository.home_repository import home_repository
+from repository.ciudadRepository import ciudadRepository
+from repository.solicutudesRepository import solicitudesRepsitory
+from dominios.ciudad import ciudad
 
 class home_service():
     def __init__(self):
-        self.__HomeRepo = home_repository()
+        self.__solRepo = solicitudesRepsitory()
+        self.__ciuRepo = ciudadRepository()
 
     def obtener_Tciudades(self):
         """
@@ -10,7 +13,7 @@ class home_service():
         para se usado en los dtos correspondientes
         SALIDAS: tuplas de la forma (nombre ciudad, ciudad-departamento)
         """
-        salida = self.__HomeRepo.obtener_ciudades()
+        salida = self.__ciuRepo.obtener_ciudades()
         ciudades_label = list()
         for i in salida:
             temp = i['nombre']+", "+i['departamentos.nombre'] #formato de nombre ciudad,departamento
@@ -24,5 +27,5 @@ class home_service():
         return grupo_ciudades
 
     def insertar_solicitudC(self, _nombre, _direccion, _ciudad, _correo):
-        salida = self.__HomeRepo.insertar_solicitudC(_nombre, _direccion, _ciudad, _correo)
+        salida = self.__solRepo.insertar_solicitudC(_nombre, _direccion, _ciudad, _correo)
         return list(salida[0].values())
