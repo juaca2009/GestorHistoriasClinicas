@@ -1,5 +1,6 @@
 from app import app
 from flaskext.mysql import MySQL
+from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 
 mysql = MySQL()
@@ -11,6 +12,7 @@ app.config['MYSQL_DATABASE_DB'] = 'juancamilo99_historiasc'
 app.config['MYSQL_DATABASE_HOST'] = 'mysql-juancamilo99.alwaysdata.net'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
+db = SQLAlchemy(app)
 
 # Setup the Flask-JWT-Extended extension
 app.config['JWT_SECRET_KEY'] = 'b56cde8c29107c55dce5f0ff90c59d12'
