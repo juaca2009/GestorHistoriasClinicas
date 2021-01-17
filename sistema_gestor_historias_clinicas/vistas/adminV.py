@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
+from flask_login import current_user
 from app import app
 
 admin_vista = Blueprint('admin_vista', __name__)

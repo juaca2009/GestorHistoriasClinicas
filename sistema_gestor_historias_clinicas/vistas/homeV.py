@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
 from app import app
 from services.home_service import home_service
 from services.login_service import login_servicie
@@ -31,13 +31,15 @@ def cargar_usuario(nro_documento):
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
-    session['tipo_cuenta'] = 'None'
-    print(session)
-    return render_template("home/home.html", bandLogin="")
+    if current_user.is_authenticated == False:
+        session['tipo_cuenta'] = 'None'
+    return render_template("home/home.html", bandLogin="", tipoS=session['tipo_cuenta'])
 
 
 @app.route("/inicioSesion", methods = ["GET", "POST"])
 def inicio_sesion():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = loginDto()
     if form.validate_on_submit():
         if form.tipoL.data == 'paciente':
@@ -76,8 +78,16 @@ def inicio_sesion():
     return render_template("home/login.html", titulo='Inicio Sesion', form=form, bandLogin="1")
 
 
+@app.route("/cerrarSesion")
+def cerrarSesion():
+    logout_user()
+    return redirect(url_for('inicio_sesion'))
+
+
 @app.route("/registroClinico", methods = ["GET", "POST"])
 def registro_clinico():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = solicitudClinicaDto()
     ciudades = services_home.obtener_Tciudades()
     form.ciudadC.choices = ciudades #asignacion de tuplas para el form dinamico select
