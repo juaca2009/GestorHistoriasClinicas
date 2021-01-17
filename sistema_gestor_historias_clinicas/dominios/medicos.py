@@ -11,3 +11,6 @@ class medicos(db.Model, UserMixin):
     id_clinica = db.Column(db.Integer, db.ForeignKey('clinicas.id'), nullable=False)
     id_espc = db.Column(db.Integer, db.ForeignKey('tipo_especializacion.id'), nullable=False)
     contrasena = db.Column(db.String(10), nullable=False)
+
+    def get_id(self):
+        return self.nro_documento

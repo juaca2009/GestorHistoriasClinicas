@@ -10,3 +10,6 @@ class paciente(db.Model, UserMixin):
     telefono = db.Column(db.String(10), nullable=False)
     id_historias = db.Column(db.Integer, db.ForeignKey('historias_clinicas.id'), nullable=False)
     contrasena = db.Column(db.String(10), nullable=False)
+
+    def get_id(self):
+        return self.nro_documento

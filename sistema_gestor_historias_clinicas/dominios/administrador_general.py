@@ -10,3 +10,6 @@ class administrador_general(db.Model, UserMixin):
     telefono = db.Column(db.String(10), nullable=False)
     cod_postal =  db.Column(db.Integer, db.ForeignKey('ciudad.codigo_postal'), nullable=False)
     contrasena = db.Column(db.String(10), nullable=False)
+
+    def get_id(self):
+        return self.nro_documento
