@@ -25,15 +25,41 @@
           
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mr-3">
-                            <a class="nav-link link-color" href="{{ url_for('home') }}">Pagina Principal <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item  mr-3">
-                            <a class="nav-link link-color" href="{{ url_for('registro_clinico') }}">Registre su Clinica</a>
-                        </li>
-                        <li class="nav-item  mr-3">
-                            <a class="nav-link font-weight-bold link-color" href="{{ url_for('inicio_sesion') }}">Inico de Sesion</a>
-                        </li>
+                        {% if current_user.is_authenticated %}
+                            <li class="nav-item mr-3">
+                                <a class="nav-link link-color" href="{{ url_for('home') }}">Pagina Principal <span class="sr-only">(current)</span></a>
+                            </li>
+                            {% if tipoS == 'aGeneral'%}
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link link-color" href="{{ url_for('adminAdmin') }}">Panel de Controlll <span class="sr-only">(current)</span></a>
+                                </li>
+                            {% elif tipoS == 'aClinico' %}
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link link-color" href="#">Panel de Control <span class="sr-only">(current)</span></a>
+                                </li>
+                            {% elif tipoS == 'medico' %}
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link link-color" href="#">Panel de Control <span class="sr-only">(current)</span></a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link link-color" href="#">{{ tipoS }}  <span class="sr-only">(current)</span></a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item mr-3">
+                                <a class="nav-link link-color" href="{{ url_for('cerrarSesion') }}">Cerrar Sesion <span class="sr-only">(current)</span></a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item mr-3">
+                                <a class="nav-link link-color" href="{{ url_for('home') }}">Pagina Principal <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item  mr-3">
+                                <a class="nav-link link-color" href="{{ url_for('registro_clinico') }}">Registre su Clinica</a>
+                            </li>
+                            <li class="nav-item  mr-3">
+                                <a class="nav-link font-weight-bold link-color" href="{{ url_for('inicio_sesion') }}">Inico de Sesion</a>
+                            </li>
+                        {%endif %}
                     </ul>
                 </div>
             </div>
