@@ -7,7 +7,7 @@ class loginDto(FlaskForm):
                        validators=[DataRequired("Rellene este campo "), Email("Ingrese un email valido")])
     contra = StringField('contraseña',
                        validators=[DataRequired("Rellene este campo ")])
-    tipoL = SelectField('ciudadC', 
+    tipoL = SelectField('tipoL', 
                          choices=[('paciente',"Paciente"),('medico',"Medico"), ('aClinico', "Administrador Clinico"), ('aSistema', "Administrador del Sistema")], 
                          validators=[DataRequired("Rellene este campo")])
     submit = SubmitField('Inicar Sesion')
