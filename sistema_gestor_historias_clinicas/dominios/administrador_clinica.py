@@ -1,7 +1,7 @@
 from db_config import db
+from flask_login import UserMixin
 
-
-class administrador_clinica(db.Model):
+class administrador_clinica(db.Model, UserMixin):
     nro_documento = db.Column(db.Integer, primary_key=True)
     tipo_d = db.Column(db.Integer, db.ForeignKey('tipo_documento.id'), nullable=False)
     nombre = db.Column(db.String(40), nullable=False)
