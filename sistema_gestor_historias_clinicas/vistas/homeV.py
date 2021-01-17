@@ -1,15 +1,38 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
+from flask_login import login_user
 from app import app
 from services.home_service import home_service
+from services.login_service import login_servicie
 from dtos.homeDtos.solicitudClinicaDto import solicitudClinicaDto
 from dtos.homeDtos.loginDto import loginDto
+from app import login_manager
 
 home_vista = Blueprint('home_vista', __name__)
 
 services_home = home_service()
+services_login = login_servicie()
+
+
+@login_manager.user_loader
+def cargar_usuario(nro_documento):
+    if session['tipo_cuenta'] == 'paciente':
+        return services_login.obtener_paciente_id(nro_documento)
+    elif session['tipo_cuenta'] == 'medico':
+        return services_login.obtener_medico_id(nro_documento)
+    elif session['tipo_cuenta'] == 'aClinico':
+        return services_login.obtener_aClinico_id(nro_documento)
+    else:
+        return services_login.obtener_aGeneral_id(nro_documento)
+
+
+
+
+
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
+    session['tipo_cuenta'] = 'None'
+    print(session)
     return render_template("home/home.html", bandLogin="")
 
 
@@ -17,11 +40,39 @@ def home():
 def inicio_sesion():
     form = loginDto()
     if form.validate_on_submit():
-        inicio = False
-        if inicio == True:
-            print("1")
+        if form.tipoL.data == 'paciente':
+            session['tipo_cuenta'] = 'paciente'
+            paciente = services_login.obtener_paciente(form.email.data)
+            if paciente and paciente.contrasena == form.contra.data:
+                login_user(paciente)
+                return redirect(url_for('home'))
+            else:
+                flash(f'Correo o contraseña erroneos, revise su informacion', 'danger')
+        elif form.tipoL.data == 'medico':
+            session['tipo_cuenta'] = 'medico'
+            medico = services_login.obtener_medico(form.email.data)
+            if medico and medico.contrasena == form.contra.data:
+                login_user(medico)
+                return redirect(url_for('home'))
+            else:
+                flash(f'Correo o contraseña erroneos, revise su informacion', 'danger')
+        elif form.tipoL.data == 'aClinico':
+            session['tipo_cuenta'] = 'aClinico'
+            aclinico = services_login.obtener_aclinico(form.email.data)
+            if aclinico and aclinico.contrasena == form.contra.data:
+                login_user(aclinico)
+                return redirect(url_for('home'))
+            else:
+                flash(f'Correo o contraseña erroneos, revise su informacion', 'danger')
         else:
-            flash(f'error', 'danger')
+            session['tipo_cuenta'] = 'aGeneral'
+            ageneral = services_login.obtener_ageneral(form.email.data)
+            if ageneral and ageneral.contrasena == form.contra.data:
+                print(type(ageneral))
+                login_user(ageneral)
+                return redirect(url_for('adminAdmin'))
+            else:
+                flash(f'Correo o contraseña erroneos, revise su informacion', 'danger')
     return render_template("home/login.html", titulo='Inicio Sesion', form=form, bandLogin="1")
 
 
