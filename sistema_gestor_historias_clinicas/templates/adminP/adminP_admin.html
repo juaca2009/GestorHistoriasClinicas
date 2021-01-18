@@ -21,19 +21,21 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>aaa</td>
-                            <td>
+                          {% for i in admins %}
+                            <tr>
+                              <th scope="row">{{ i['nro_documento'] }}</th>
+                              <td>{{ i['nombre'] }}</td>
+                              <td>{{ i['apellidos'] }}</td>
+                              <td>{{ i['ciudad.nombre'] }}</td>
+                              <td>
                                 <div class="w-10">
-                                    <a class="btn btn-danger btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdminDel') }}" role="button">Eliminar</a>
-                                    <a class="btn btn-warning btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdminUp') }}" role="button">Actualizar</a>
-                                    <a class="btn btn-info btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdmininfo') }}" role="button">Mas Informacion</a>
-                                </div>
-                            </td>
-                          </tr>
+                                  <a class="btn btn-danger btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdminDel') }}" role="button">Eliminar</a>
+                                  <a class="btn btn-warning btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdminUp') }}" role="button">Actualizar</a>
+                                  <a class="btn btn-info btn-sm d-block mb-1 mr-5" href="{{ url_for('adminAdmininfo') }}" role="button">Mas Informacion</a>
+                              </div>
+                              </td>
+                            </tr>
+                          {% endfor %}
                         </tbody>
                       </table>
                 </div>

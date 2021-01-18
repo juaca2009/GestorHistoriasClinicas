@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
 from flask_login import current_user, login_required
 from app import app
+from services.adminP_servicie import adminP_servicie
 
 admin_vista = Blueprint('admin_vista', __name__)
+
+service_adminP = adminP_servicie()
 
 @app.route("/admin/admins", methods = ["GET", "POST"])
 @login_required
 def adminAdmin():
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
-    return render_template("adminP/adminP_admin.html", titulo='Admin Sistema')
+    admins = service_adminP.obtener_administradores(session['_user_id'])
+    return render_template("adminP/adminP_admin.html", titulo='Admin Sistema', admins=admins)
 
 @app.route("/admin/clinicas", methods = ["GET", "POST"])
 @login_required
