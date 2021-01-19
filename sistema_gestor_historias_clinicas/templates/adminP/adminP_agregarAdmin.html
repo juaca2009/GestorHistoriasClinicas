@@ -16,17 +16,27 @@
         <div class="col-lg-8 bg-form">
             <h1 class="font-weight-bold text-black form-style-title mb-5 text-center mt-3"> Agregar Nuevo Administrador </h1>
             <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
                 <div class="row">
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nro Documento</label>
-                            <input class="form-control" type="text" placeholder="un numero">
+                            {% if form.documentoAp.errors %}
+                                {{ form.documentoAp(class="form-control is-invalid", placeholder="Ingrese un numero de documento valido", id="exampleInputEmail1", type="text") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.documentoAp.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.documentoAp(class="form-control", placeholder="Ingrese un numero de documento valido", id="exampleInputEmail1", type="text") }}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Tipo Documento</label>
-                            <input class="form-control" type="text" placeholder="un numero">
+                            {{ form.TdocumentoAp(class="form-control", id="exampleFormControlSelect1") }}
                         </div>
                     </div>
                 </div>
@@ -34,40 +44,85 @@
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nombres</label>
-                            <input class="form-control" type="text" placeholder="un nombre">
+                            {% if form.nombreAp.errors %}
+                                {{ form.nombreAp(class="form-control is-invalid", placeholder="Ingrese el nombre", id="exampleInputEmail1", type="text") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.nombreAp.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.nombreAp(class="form-control", placeholder="Ingrese el nombre", id="exampleInputEmail1", type="text") }}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Apellidos</label>
-                            <input class="form-control" type="text" placeholder="un apellido">
+                            {% if form.apellidosAp.errors %}
+                                {{ form.apellidosAp(class="form-control is-invalid", placeholder="Ingrese el apellido", id="exampleInputEmail1", type="text") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.apellidosAp.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div> 
+                            {% else %}
+                                {{ form.apellidosAp(class="form-control", placeholder="Ingrese el apellido", id="exampleInputEmail1", type="text") }}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
                 <div class="form-group mb-4">
                     <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Correo</label>
-                    <input class="form-control" type="text" placeholder="una ciudad">
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid", placeholder="Ingrese un correo valido", id="exampleInputEmail1", type="email") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control", placeholder="Ingrese un correo valido", id="exampleInputEmail1", type="email") }}
+                    {% endif %}
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Ciudad</label>
-                            <input class="form-control" type="text" placeholder="un nombre">
+                            {{ form.ciudadAp(class="form-control", id="exampleFormControlSelect1") }}
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Telefono/Celular</label>
-                            <input class="form-control" type="text" placeholder="un apellido">
+                            {% if form.telefonoAp.errors %}
+                                {{ form.telefonoAp(class="form-control is-invalid", placeholder="Ingrese un numero valido", id="exampleInputEmail1", type="text") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.telefonoAp.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.telefonoAp(class="form-control", placeholder="Ingrese un numero valido", id="exampleInputEmail1", type="text") }}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
                 <div class="form-group mb-4">
                     <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Contraseña</label>
-                    <input class="form-control" type="text" placeholder="una ciudad">
+                    {% if form.contrasenaAp.errors %}
+                        {{ form.contrasenaAp(class="form-control is-invalid", placeholder="Minimo 5 caracteres maximo 10 caracteres", id="exampleInputEmail1", type="text") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.contrasenaAp.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.contrasenaAp(class="form-control", placeholder="Minimo 5 caracteres maximo 10 caracteres", id="exampleInputEmail1", type="text") }}
+                    {% endif %}
                 </div>
                 <div class="form-group mb-4">
-                    <button class="btn btn-success font-weight-bold w-100" type="submit"> Agregar Administrador</button>
+                    {{ form.submit(class="btn btn-success font-weight-bold w-100", type="submit") }}
                 </div>
             </form>
         </div>
