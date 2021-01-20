@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
 from flask_login import login_user, current_user, logout_user
-from app import app
+from app import app, encriptador
 from services.home_service import home_service
 from services.ciudad_service import ciudad_service
 from services.login_service import login_servicie
@@ -47,7 +47,7 @@ def inicio_sesion():
         if form.tipoL.data == 'paciente':
             session['tipo_cuenta'] = 'paciente'
             paciente = services_login.obtener_paciente(form.email.data)
-            if paciente and paciente.contrasena == form.contra.data:
+            if paciente and encriptador.check_password_hash(paciente.contrasena, form.contra.data):
                 login_user(paciente)
                 return redirect(url_for('home'))
             else:
@@ -55,7 +55,7 @@ def inicio_sesion():
         elif form.tipoL.data == 'medico':
             session['tipo_cuenta'] = 'medico'
             medico = services_login.obtener_medico(form.email.data)
-            if medico and medico.contrasena == form.contra.data:
+            if medico and encriptador.check_password_hash(medico.contrasena, form.contra.data):
                 login_user(medico)
                 return redirect(url_for('home'))
             else:
@@ -63,7 +63,7 @@ def inicio_sesion():
         elif form.tipoL.data == 'aClinico':
             session['tipo_cuenta'] = 'aClinico'
             aclinico = services_login.obtener_aclinico(form.email.data)
-            if aclinico and aclinico.contrasena == form.contra.data:
+            if aclinico and encriptador.check_password_hash(aclinico.contrasena, form.contra.data):
                 login_user(aclinico)
                 return redirect(url_for('home'))
             else:
@@ -71,8 +71,7 @@ def inicio_sesion():
         else:
             session['tipo_cuenta'] = 'aGeneral'
             ageneral = services_login.obtener_ageneral(form.email.data)
-            if ageneral and ageneral.contrasena == form.contra.data:
-                print(type(ageneral))
+            if ageneral and  encriptador.check_password_hash(ageneral.contrasena, form.contra.data):
                 login_user(ageneral)
                 return redirect(url_for('adminAdmin'))
             else:
