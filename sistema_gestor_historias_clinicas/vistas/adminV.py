@@ -22,6 +22,34 @@ def adminAdmin():
 
 
 
+@app.route("/admin/admins/eliminar/<int:id>", methods = ["GET", "POST"])
+@login_required
+def adminAdminDel(id):
+    if session['tipo_cuenta'] != 'aGeneral':
+        return redirect(url_for('home'))
+    return render_template("adminP/adminP_adminDel.html", titulo='Admin Sistema')
+
+
+
+
+@app.route("/admin/admins/actualizar/<int:id>", methods = ["GET", "POST"])
+@login_required
+def adminAdminUp(id):
+    if session['tipo_cuenta'] != 'aGeneral':
+        return redirect(url_for('home'))
+    return render_template("adminP/adminP_adminUp.html", titulo='Admin Sistema')
+
+
+
+
+@app.route("/admin/admins/informacion/<int:id>", methods = ["GET", "POST"])
+@login_required
+def adminAdmininfo(id):
+    if session['tipo_cuenta'] != 'aGeneral':
+        return redirect(url_for('home'))
+    return render_template("adminP/adminP_adminInfo.html", titulo='Admin Sistema')
+
+
 
 @app.route("/admin/agregarAdmin", methods = ["GET", "POST"])
 @login_required
@@ -34,17 +62,14 @@ def adminAgregar():
     form.ciudadAp.choices = ciudades
     form.TdocumentoAp.choices = Tdocumento
     if form.validate_on_submit():
-        if form.verificar_nroDocumento():
-            bandera = service_adminP.agregar_adminP(form.nombreAp.data, form.apellidosAp.data, form.documentoAp.data, form.TdocumentoAp.data, form.email.data, form.telefonoAp.data, form.ciudadAp.data, form.contrasenaAp.data)
-            if bandera[0] == 1:
-                flash(f'Se ha registrado a {form.nombreAp.data}  {form.apellidosAp.data} satisfactoriamente.', 'success')
-                return redirect(url_for('adminAdmin'))
-            elif bandera[0] == 0:
-                flash(f'El correo ya se encuentra registrado', 'danger')
-            else:
-                flash(f'Esa persona ya se encuentra registrada en el sistema como administrador general.', 'danger')
+        bandera = service_adminP.agregar_adminP(form.nombreAp.data, form.apellidosAp.data, form.documentoAp.data, form.TdocumentoAp.data, form.email.data, form.telefonoAp.data, form.ciudadAp.data, form.contrasenaAp.data)
+        if bandera[0] == 1:
+            flash(f'Se ha registrado a {form.nombreAp.data}  {form.apellidosAp.data} satisfactoriamente.', 'success')
+            return redirect(url_for('adminAdmin'))
+        elif bandera[0] == 0:
+            flash(f'El correo ya se encuentra registrado', 'danger')
         else:
-            flash(f'Ingrese un numero de documento valido.', 'danger')
+            flash(f'Esa persona ya se encuentra registrada en el sistema como administrador general.', 'danger')
     return render_template("adminP/adminP_agregarAdmin.html", titulo='Admin Sistema', form=form)
 
 
@@ -64,27 +89,6 @@ def adminSolicitudesClinicas():
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
     return render_template("adminP/adminP_solicitudes.html", titulo='Admin Sistema')
-
-@app.route("/admin/admins/eliminar", methods = ["GET", "POST"])
-@login_required
-def adminAdminDel():
-    if session['tipo_cuenta'] != 'aGeneral':
-        return redirect(url_for('home'))
-    return render_template("adminP/adminP_adminDel.html", titulo='Admin Sistema')
-
-@app.route("/admin/admins/actualizar", methods = ["GET", "POST"])
-@login_required
-def adminAdminUp():
-    if session['tipo_cuenta'] != 'aGeneral':
-        return redirect(url_for('home'))
-    return render_template("adminP/adminP_adminUp.html", titulo='Admin Sistema')
-
-@app.route("/admin/admins/informacion", methods = ["GET", "POST"])
-@login_required
-def adminAdmininfo():
-    if session['tipo_cuenta'] != 'aGeneral':
-        return redirect(url_for('home'))
-    return render_template("adminP/adminP_adminInfo.html", titulo='Admin Sistema')
 
 @app.route("/admin/clinicas/informacion", methods = ["GET", "POST"])
 @login_required
