@@ -5,6 +5,7 @@ from services.adminP_servicie import adminP_servicie
 from services.ciudad_service import ciudad_service
 from services.tipoDocumento_service import tipoDocumento_servicie
 from dtos.adminPDtos.agregar_adimPDto import agregar_adimPDto
+from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
 
 admin_vista = Blueprint('admin_vista', __name__)
 
@@ -27,7 +28,15 @@ def adminAdmin():
 def adminAdminDel(id):
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
-    return render_template("adminP/adminP_adminDel.html", titulo='Admin Sistema')
+    form = eliminar_adminPDto()
+    info_admin = service_adminP.obtener_adminP(id)
+    if form.validate_on_submit():
+        service_adminP.eliminar_adminP(id)
+        nombre = info_admin['nombre']
+        apellidos = info_admin['apellidos']
+        flash(f'Se ha Eliminado a {nombre}  {apellidos} satisfactoriamente.', 'warning')
+        return redirect(url_for('adminAdmin'))
+    return render_template("adminP/adminP_adminDel.html", titulo='Admin Sistema', form=form, info=info_admin)
 
 
 
