@@ -33,6 +33,18 @@ def adminAgregar():
     Tdocumento = service_tdocumento.obtener_Tdocumento()
     form.ciudadAp.choices = ciudades
     form.TdocumentoAp.choices = Tdocumento
+    if form.validate_on_submit():
+        if form.verificar_nroDocumento():
+            bandera = service_adminP.agregar_adminP(form.nombreAp.data, form.apellidosAp.data, form.documentoAp.data, form.TdocumentoAp.data, form.email.data, form.telefonoAp.data, form.ciudadAp.data, form.contrasenaAp.data)
+            if bandera[0] == 1:
+                flash(f'Se ha registrado a {form.nombreAp.data}  {form.apellidosAp.data} satisfactoriamente.', 'success')
+                return redirect(url_for('adminAdmin'))
+            elif bandera[0] == 0:
+                flash(f'El correo ya se encuentra registrado', 'danger')
+            else:
+                flash(f'Esa persona ya se encuentra registrada en el sistema como administrador general.', 'danger')
+        else:
+            flash(f'Ingrese un numero de documento valido.', 'danger')
     return render_template("adminP/adminP_agregarAdmin.html", titulo='Admin Sistema', form=form)
 
 

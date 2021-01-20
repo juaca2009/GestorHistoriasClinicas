@@ -16,3 +16,16 @@ class administradorGeneralRepository(administrador_general):
         salida = cursor.fetchall()
         cursor.close()
         return salida 
+
+    def agregar_administrador(self, _nombre, _apellidos, _documento, _tdocumento, _email, _telefono, _ciudad, _contrasena):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            select insertar_adminP(%s, %s, %s, %s, %s, %s, %s, %s)
+            """,
+            (_documento, _tdocumento, _nombre, _apellidos, _email, _telefono, _ciudad, _contrasena)
+        )
+        salida = cursor.fetchall()
+        self.__conexion.commit()
+        cursor.close()
+        return salida
