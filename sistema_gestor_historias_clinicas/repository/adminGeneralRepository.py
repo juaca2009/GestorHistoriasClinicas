@@ -6,6 +6,20 @@ class administradorGeneralRepository(administrador_general):
     def __init__(self):
         self.__conexion = mysql.connect()
 
+
+
+    def obtener_administrador(self, _id):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            select nro_documento, administrador_general.nombre, apellidos, ciudad.nombre, correo, telefono from administrador_general inner join ciudad on (administrador_general.cod_postal = ciudad.codigo_postal) where nro_documento = %s
+            """,
+            (_id)
+        )
+        salida = cursor.fetchall()
+        cursor.close()
+        return salida[0]
+
     def obtener_administradores(self):
         cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
@@ -29,3 +43,16 @@ class administradorGeneralRepository(administrador_general):
         self.__conexion.commit()
         cursor.close()
         return salida
+
+
+    def eliminar_administrador(self, _id):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            delete from administrador_general where nro_documento = %s 
+            """,
+            (_id)
+        )
+        self.__conexion.commit()
+        cursor.close()
+        

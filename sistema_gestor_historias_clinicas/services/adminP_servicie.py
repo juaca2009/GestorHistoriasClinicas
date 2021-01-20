@@ -6,6 +6,9 @@ class adminP_servicie():
     def __init__(self):
         self.__adminPRepo = administradorGeneralRepository()
 
+    def obtener_adminP(self, _id):
+        return self.__adminPRepo.obtener_administrador(_id)
+
     def obtener_administradores(self, _id):
         salida = self.__adminPRepo.obtener_administradores()
         contador = 0
@@ -22,3 +25,9 @@ class adminP_servicie():
         _contrasena = encriptador.generate_password_hash(_contrasena).decode('utf-8')
         salida = self.__adminPRepo.agregar_administrador(_nombre, _apellidos, _documento, _tdocumento, _email, _telefono, _ciudad, _contrasena)
         return list(salida[0].values())
+
+    
+    def eliminar_adminP(self, _id):
+        self.__adminPRepo.eliminar_administrador(_id)
+
+    
