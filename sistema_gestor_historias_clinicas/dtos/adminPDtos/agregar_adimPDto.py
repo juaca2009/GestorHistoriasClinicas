@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
-from wtforms.validators import DataRequired, Length, Email
+from wtforms.validators import DataRequired, Length, Email, ValidationError
 
 class agregar_adimPDto(FlaskForm):
     nombreAp = StringField('nombreAp',
@@ -21,7 +21,7 @@ class agregar_adimPDto(FlaskForm):
                           validators=[DataRequired("Rellene este campo"), Length(min=5, max=10, message="La contrasena debe tener minimo 5 caracteres y maximo 10 caracteres")])
     submit = SubmitField('Registrar Administrador')
 
-    def verificar_nroDocumento(self):
-        docu = str(self.documentoAp.data)
-        print(docu)
-        return docu.isdigit()
+    def validate_documentoAp(self, documentoAp):
+        docu = str(documentoAp.data)
+        if docu.isdigit() == False:
+            raise ValidationError('Ingrese un numero de documento valido')
