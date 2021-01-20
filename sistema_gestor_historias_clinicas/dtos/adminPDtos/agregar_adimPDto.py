@@ -25,3 +25,8 @@ class agregar_adimPDto(FlaskForm):
         docu = str(documentoAp.data)
         if docu.isdigit() == False:
             raise ValidationError('Ingrese un numero de documento valido')
+    
+    def validate_telefonoAp(self, telefonoAp):
+        tele = str(telefonoAp.data)
+        if tele.isdigit() == False:
+            raise ValidationError('Ingrese un numero de telefono/celular que sea valido')
