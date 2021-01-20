@@ -1,5 +1,5 @@
 delimiter //
-create function insertar_adminP(_nro_documento int, _tipo_documento varchar(30), _nombre varchar(40), _apellidos varchar(40), _correo varchar(50), _telefono varchar(10), _ciudad varchar(50), _contrasena varchar(10))
+create function insertar_adminP(_nro_documento int, _tipo_documento varchar(30), _nombre varchar(40), _apellidos varchar(40), _correo varchar(50), _telefono varchar(10), _ciudad varchar(50), _contrasena varchar(90))
     returns int
 begin  
     declare tip_documento int;
