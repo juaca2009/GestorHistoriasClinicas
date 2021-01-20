@@ -3,9 +3,9 @@ from dominios.tipo_documento import tipo_documento
 
 class tipoDocumento_servicie():
     def __init__(self):
-        self.__tipDRepo = tipoDocumentoRepository
+        self.__tipDRepo = tipoDocumentoRepository()
 
-    def obtener_solicitudes(self):
+    def obtener_Tdocumento(self):
         salida = self.__tipDRepo.obtener_tipos()
         tipos_grupos = list()
         cont = 0
