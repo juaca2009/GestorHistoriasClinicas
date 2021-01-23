@@ -7,6 +7,7 @@ from services.tipoDocumento_service import tipoDocumento_servicie
 from dtos.adminPDtos.agregar_adimPDto import agregar_adimPDto
 from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
 from dtos.adminPDtos.actualizar_adminPDto import actualizar_adminPDto
+from dtos.adminPDtos.info_adminPDto import info_adminPDto
 
 admin_vista = Blueprint('admin_vista', __name__)
 
@@ -76,7 +77,9 @@ def adminAdminUp(id):
 def adminAdmininfo(id):
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
-    return render_template("adminP/adminP_adminInfo.html", titulo='Admin Sistema')
+    form = info_adminPDto()
+    info_admin = service_adminP.obtener_adminP(id)
+    return render_template("adminP/adminP_adminInfo.html", titulo='Admin Sistema', info=info_admin, form=form)
 
 
 
