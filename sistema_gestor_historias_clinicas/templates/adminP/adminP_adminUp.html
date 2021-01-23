@@ -16,44 +16,64 @@
         <div class="col-lg-8 bg-form">
             <h1 class="font-weight-bold text-black form-style-title mb-5 text-center mt-3"> Actualizar el administrador nombre </h1>
             <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
                 <div class="form-group mb-4">
                     <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nro Documento</label>
-                    <input class="form-control" type="text" placeholder="un numero" readonly>
+                    {{ form.documentoAp(class="form-control", placeholder=info['nro_documento'], id="exampleInputEmail1", type="text", readonly=true) }}
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nombres</label>
-                            <input class="form-control" type="text" placeholder="un nombre" readonly>
+                            {{ form.nombreAp(class="form-control", placeholder=info['nombre'], id="exampleInputEmail1", type="text", readonly=true) }}
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Apellidos</label>
-                            <input class="form-control" type="text" placeholder="un apellido" readonly>
+                            {{ form.apellidosAp(class="form-control", placeholder=info['apellidos'], id="exampleInputEmail1", type="text", readonly=true) }}
                         </div>
                     </div>
                 </div>
                 <div class="form-group mb-4">
-                    <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Ciudad</label>
-                    <input class="form-control" type="text" placeholder="una ciudad">
+                    <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Correo</label>
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid", placeholder="Ingrese un correo valido", id="exampleInputEmail1", type="email") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control", placeholder="Ingrese un correo valido", id="exampleInputEmail1", type="email") }}
+                    {% endif %}
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group mb-4">
-                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Correo</label>
-                            <input class="form-control" type="text" placeholder="un nombre">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Ciudad</label>
+                            {{ form.ciudadAp(class="form-control", id="exampleFormControlSelect1") }}
+                            
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Telefono/Celular</label>
-                            <input class="form-control" type="text" placeholder="un apellido">
+                            {% if form.telefonoAp.errors %}
+                                {{ form.telefonoAp(class="form-control is-invalid", placeholder="Ingrese un numero valido", id="exampleInputEmail1", type="text") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.telefonoAp.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.telefonoAp(class="form-control", placeholder="Ingrese un numero valido", id="exampleInputEmail1", type="text") }}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
                 <div class="form-group mb-4">
-                    <button class="btn btn-warning font-weight-bold w-100" type="submit"> Actualizar</button>
+                    {{ form.submit(class="btn btn-warning font-weight-bold w-100", type="submit") }}
                 </div>
             </form>
         </div>
