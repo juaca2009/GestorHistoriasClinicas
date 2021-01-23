@@ -30,4 +30,8 @@ class adminP_servicie():
     def eliminar_adminP(self, _id):
         self.__adminPRepo.eliminar_administrador(_id)
 
+    def actualizar_adminP(self, _id, _ciudad, _correo, _telefono):
+        salida = self.__adminPRepo.actualizar_administrador(_id, _ciudad, _correo, _telefono)
+        return list(salida[0].values())
+
     

@@ -55,4 +55,16 @@ class administradorGeneralRepository(administrador_general):
         )
         self.__conexion.commit()
         cursor.close()
-        
+
+    def actualizar_administrador(self, _id, _ciudad, _correo, _telefono):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            select actualizar_adminG(%s, %s, %s, %s)
+            """,
+            (_id, _correo, _telefono, _ciudad)
+        )
+        salida = cursor.fetchall()
+        self.__conexion.commit()
+        cursor.close()
+        return salida
