@@ -6,6 +6,7 @@ from services.ciudad_service import ciudad_service
 from services.tipoDocumento_service import tipoDocumento_servicie
 from dtos.adminPDtos.agregar_adimPDto import agregar_adimPDto
 from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
+from dtos.adminPDtos.actualizar_adminPDto import actualizar_adminPDto
 
 admin_vista = Blueprint('admin_vista', __name__)
 
@@ -46,7 +47,26 @@ def adminAdminDel(id):
 def adminAdminUp(id):
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
-    return render_template("adminP/adminP_adminUp.html", titulo='Admin Sistema')
+    ciudades = service_ciudad.obtener_Tciudades()
+    form = actualizar_adminPDto()
+    info_admin = service_adminP.obtener_adminP(id)
+    form.ciudadAp.choices = ciudades
+   
+    if form.validate_on_submit():
+        print(form.telefonoAp.data)
+        bandera = service_adminP.actualizar_adminP(info_admin['nro_documento'], form.ciudadAp.data, form.email.data, form.telefonoAp.data)
+        if bandera[0] == 1:
+            nombre = info_admin['nombre']
+            apellidos = info_admin['apellidos']
+            flash(f'Se ha actualizado a {nombre}  {apellidos} satisfactoriamente.', 'success')
+            return redirect(url_for('adminAdmin'))
+        else:
+            flash(f'El correo ya se encuentra registrado', 'danger')
+    elif request.method == 'GET':
+        form.ciudadAp.data = info_admin['ciudad.nombre']
+        form.email.data = info_admin['correo']
+        form.telefonoAp.data = info_admin['telefono']
+    return render_template("adminP/adminP_adminUp.html", titulo='Admin Sistema', form=form, info=info_admin)
 
 
 
