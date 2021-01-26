@@ -132,3 +132,14 @@ def adminSolicitudesClinicas():
     solicitudes = services_solicitudes.obtener_solicitudes()
     return render_template("adminP/adminP_solicitudes.html", titulo='Admin Sistema', soli=solicitudes)
 
+
+
+
+@app.route("/admin/solicitudesClinicas/eliminar/<int:id>", methods = ["GET", "POST"])
+@login_required
+def adminSolicitudesClinicasDel(id):
+    if session['tipo_cuenta'] != 'aGeneral':
+        return redirect(url_for('home'))
+    services_solicitudes.eliminar_solicitud(id)
+    return redirect(url_for('adminSolicitudesClinicas'))
+

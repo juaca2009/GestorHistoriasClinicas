@@ -29,3 +29,14 @@ class solicitudesRepsitory(solicitudes):
         salida = cursor.fetchall()
         cursor.close()
         return salida
+
+    def eliminar_solicitud(self, _id):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            delete from solicitudes where id = %s 
+            """,
+            (_id)
+        )
+        self.__conexion.commit()
+        cursor.close()
