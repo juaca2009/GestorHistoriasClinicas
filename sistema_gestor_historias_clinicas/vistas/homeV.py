@@ -1,18 +1,12 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
 from flask_login import login_user, current_user, logout_user
 from app import app, encriptador
-from services.home_service import home_service
-from services.ciudad_service import ciudad_service
-from services.login_service import login_servicie
+from services import service_ciudad, services_login, service_tdocumento, services_solicitudes
 from dtos.homeDtos.solicitudClinicaDto import solicitudClinicaDto
 from dtos.homeDtos.loginDto import loginDto
 from app import login_manager
 
 home_vista = Blueprint('home_vista', __name__)
-
-services_home = home_service()
-services_login = login_servicie()
-services_ciudad = ciudad_service()
 
 
 @login_manager.user_loader
@@ -90,10 +84,10 @@ def registro_clinico():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = solicitudClinicaDto()
-    ciudades = services_ciudad.obtener_Tciudades()
+    ciudades = service_ciudad.obtener_Tciudades()
     form.ciudadC.choices = ciudades #asignacion de tuplas para el form dinamico select
     if form.validate_on_submit():
-        bandera_creacion = services_home.insertar_solicitudC(form.nombreC.data, form.direccionC.data, form.ciudadC.data, form.email.data)
+        bandera_creacion = services_solicitudes.insertar_solicitudC(form.nombreC.data, form.direccionC.data, form.ciudadC.data, form.email.data)
         if bandera_creacion[0] == 1:
             flash(f'La solicitud para {form.nombreC.data} ha sido enviada. Revise su correo para mas instrucciones.', 'success')
             return redirect(url_for('home'))

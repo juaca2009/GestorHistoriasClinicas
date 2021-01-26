@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
 from flask_login import current_user, login_required
 from app import app
-from services.adminP_servicie import adminP_servicie
-from services.ciudad_service import ciudad_service
-from services.tipoDocumento_service import tipoDocumento_servicie
+from services import service_adminP, service_ciudad, service_tdocumento, services_solicitudes
 from dtos.adminPDtos.agregar_adimPDto import agregar_adimPDto
 from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
 from dtos.adminPDtos.actualizar_adminPDto import actualizar_adminPDto
@@ -11,9 +9,7 @@ from dtos.adminPDtos.info_adminPDto import info_adminPDto
 
 admin_vista = Blueprint('admin_vista', __name__)
 
-service_adminP = adminP_servicie()
-service_ciudad = ciudad_service()
-service_tdocumento = tipoDocumento_servicie()
+
 
 @app.route("/admin/admins", methods = ["GET", "POST"])
 @login_required
@@ -133,7 +129,6 @@ def adminCliniasInfo():
 def adminSolicitudesClinicas():
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
-    solicitudes = service_adminP.obtener_solicitudes()
-    print(solicitudes)
+    solicitudes = services_solicitudes.obtener_solicitudes()
     return render_template("adminP/adminP_solicitudes.html", titulo='Admin Sistema', soli=solicitudes)
 
