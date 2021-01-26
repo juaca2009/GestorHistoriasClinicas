@@ -12,28 +12,27 @@
                             <th scope="col">id Solicitud</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Ciudad</th>
-                            <th scope="col">Cantidad de Pacientes</th>
-                            <th scope="col">Correo</th>
+                            <th scope="col">Direccion</th>
                             <th scope="col">Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>aaa</td>
-                            <td>
-                                <div class="w-10">
-                                    <form method="POST" action="" novalidate>
-                                        <button class="btn btn-success font-weight-bold" type="submit"> Aceptar</button>
-                                        <button class="btn btn-danger  font-weight-bold" type="submit"> Denegar</button>
-                                    </form>
-    
-                                </div>
-                            </td>
-                          </tr>
+                          {% for i in soli %}
+                            <tr>
+                              <th scope="row">{{ i['id'] }}</th>
+                              <td>{{ i['nombre'] }}</td>
+                              <td>{{ i['ciudad.nombre'] }}</td>
+                              <td>{{ i['direccion'] }}</td>
+                              <td>
+                                  <div class="w-10">
+                                      <form method="POST" action="" novalidate>
+                                          <a class="btn btn-success font-weight-bold" href="#" role="button">Aceptat</a>
+                                          <a class="btn btn-danger font-weight-bold" href="#" role="button">Eliminar</a>
+                                      </form>
+                                  </div>
+                              </td>
+                            </tr>
+                          {% endfor %}
                         </tbody>
                       </table>
                 </div>

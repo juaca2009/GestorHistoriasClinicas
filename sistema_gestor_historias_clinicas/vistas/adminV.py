@@ -115,12 +115,8 @@ def adminClinicas():
         return redirect(url_for('home'))
     return render_template("adminP/adminP_clinicas.html", titulo='Admin Sistema')
 
-@app.route("/admin/solicitudesClinicas", methods = ["GET", "POST"])
-@login_required
-def adminSolicitudesClinicas():
-    if session['tipo_cuenta'] != 'aGeneral':
-        return redirect(url_for('home'))
-    return render_template("adminP/adminP_solicitudes.html", titulo='Admin Sistema')
+
+
 
 @app.route("/admin/clinicas/informacion", methods = ["GET", "POST"])
 @login_required
@@ -128,3 +124,16 @@ def adminCliniasInfo():
     if session['tipo_cuenta'] != 'aGeneral':
         return redirect(url_for('home'))
     return render_template("adminP/adminP_clinicasInfo.html", titulo='Admin Sistema')
+
+
+
+
+@app.route("/admin/solicitudesClinicas", methods = ["GET", "POST"])
+@login_required
+def adminSolicitudesClinicas():
+    if session['tipo_cuenta'] != 'aGeneral':
+        return redirect(url_for('home'))
+    solicitudes = service_adminP.obtener_solicitudes()
+    print(solicitudes)
+    return render_template("adminP/adminP_solicitudes.html", titulo='Admin Sistema', soli=solicitudes)
+
