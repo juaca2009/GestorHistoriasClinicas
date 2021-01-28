@@ -34,7 +34,7 @@ begin
         if _nomb2 is Null then
             select codigo_postal into _cod_postal from ciudad where nombre = _ciudad;
             select solicitud_maximo() into _id;
-            insert into solicitudes (id, nombre, direccion, cod_postal, correo) values (_id, _nombre, _direccion, _cod_postal, _correo);
+            insert into solicitudes (id, nombre, direccion, cod_postal, correo, estado) values (_id, _nombre, _direccion, _cod_postal, _correo, 'noPendiente');
             return 1;
         else
             return 0;

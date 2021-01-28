@@ -6,3 +6,4 @@ class solicitudes(db.Model):
     direccion = db.Column(db.String(30), nullable=True)
     cod_postal =  db.Column(db.Integer, db.ForeignKey('ciudad.codigo_postal'), nullable=False)
     correo = db.Column(db.String(50), nullable=False)
+    estado = db.Column(db.String(12), nullable=False)

@@ -23,14 +23,18 @@
                               <td>{{ i['nombre'] }}</td>
                               <td>{{ i['ciudad.nombre'] }}</td>
                               <td>{{ i['direccion'] }}</td>
-                              <td>
-                                  <div class="w-10">
-                                      <form method="POST" action="" novalidate>
-                                          <a class="btn btn-success font-weight-bold" href="#" role="button">Aceptat</a>
-                                          <a class="btn btn-danger font-weight-bold" href="{{ url_for('adminSolicitudesClinicasDel', id=i['id']) }}" role="button">Eliminar</a>
-                                      </form>
-                                  </div>
-                              </td>
+                              {% if i['estado'] == 'noPendiente' %}
+                                <td>
+                                    <div class="w-10">
+                                        <form method="POST" action="" novalidate>
+                                            <a class="btn btn-success font-weight-bold" href="#" role="button">Aceptat</a>
+                                            <a class="btn btn-danger font-weight-bold" href="{{ url_for('adminSolicitudesClinicasDel', id=i['id']) }}" role="button">Eliminar</a>
+                                        </form>
+                                    </div>
+                                </td>
+                              {% else %}
+                                <td>Activacion Pendiente</td>
+                              {% endif %}
                             </tr>
                           {% endfor %}
                         </tbody>

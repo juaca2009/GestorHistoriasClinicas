@@ -23,7 +23,7 @@ class solicitudesRepsitory(solicitudes):
         cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
             """
-            select id, solicitudes.nombre, direccion, ciudad.nombre from solicitudes inner join ciudad on (solicitudes.cod_postal = ciudad.codigo_postal) 
+            select id, solicitudes.nombre, direccion, ciudad.nombre, estado from solicitudes inner join ciudad on (solicitudes.cod_postal = ciudad.codigo_postal) 
             """
         )
         salida = cursor.fetchall()
