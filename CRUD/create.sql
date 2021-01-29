@@ -37,7 +37,6 @@ create table solicitudes(
 create table clinicas(
     id int primary key,
     nombre varchar(50) not null,
-    descripcion varchar(200),
     cod_postal int references ciudad(codigo_postal)
 );
 
