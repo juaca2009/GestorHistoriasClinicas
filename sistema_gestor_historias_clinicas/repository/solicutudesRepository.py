@@ -52,3 +52,14 @@ class solicitudesRepsitory(solicitudes):
         )
         self.__conexion.commit()
         cursor.close()
+
+    def actualizar_estado(self, _id):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            update solicitudes set estado = 'pendiente' where id = %s 
+            """,
+            (_id)
+        )
+        self.__conexion.commit()
+        cursor.close()

@@ -21,14 +21,21 @@ class solicitudes_service():
     def eliminar_solicitud(self, _id):
         self.__solRepo.eliminar_solicitud(_id)
 
-    def generar_token(self, _id):
+    def actualizar_estadoS(self, _id):
+        self.__solRepo.actualizar_estado(_id)
+
+    def generar_token(self, _idS, _idC):
         s = token.serializer(app.config['SECRET_KEY'], 86400)  #duracion del token 24 horas = 86400 segundos
-        return s.dumps({'solicitud_id': _id}).decode('utf-8')
+        return s.dumps({'solicitud_id': _idS, 'clinica_id': _idC}).decode('utf-8')
 
     def verificar_token(self, _token):
         s = token.serializer(app.config['SECRET_KEY'])
         try:
             id_solicitud = s.loads(_token)['solicitud_id']
+            id_clinica = s.loads(_token)['clinica_id']
         except:
             return None
-        return self.obtener_solicitud(id_solicitud)
+        temp = list()
+        temp.append(id_solicitud)
+        temp.append(id_clinica)
+        return temp
