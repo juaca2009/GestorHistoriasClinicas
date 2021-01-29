@@ -30,6 +30,18 @@ class solicitudesRepsitory(solicitudes):
         cursor.close()
         return salida
 
+    def obtener_solicitud(self, _id):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            select id, solicitudes.nombre, direccion, ciudad.nombre, estado, correo from solicitudes inner join ciudad on (solicitudes.cod_postal = ciudad.codigo_postal) where id = %s
+            """, 
+            (_id)
+        )
+        salida = cursor.fetchall()
+        cursor.close()
+        return salida[0]
+        
     def eliminar_solicitud(self, _id):
         cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
