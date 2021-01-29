@@ -29,7 +29,8 @@ create table solicitudes(
     nombre varchar(60) not null,
     direccion varchar(30),
     cod_postal int references ciudad(codigo_postal),
-    correo varchar(50) not null
+    correo varchar(50) not null,
+    estado varchar(12) not null
 );
 
 -- tabla clinicas 
