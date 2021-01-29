@@ -1,0 +1,60 @@
+:root{
+    --blue: #23374d;
+    --blue-x: #0085FF;
+    --light-blue: #85c3FF;
+    --white: #ffffff;
+    --white-x: #dcdcdc;
+    --black: rgb(0, 0, 0);
+} 
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--white);
+    background-color: var(--white-x);
+    overflow-x: hidden;
+}
+
+.logo{
+    width: 100px;
+    height: 60px;
+}
+
+.bg-light{
+    background-color: var(--blue) !important;
+}
+
+.bg-dark{
+    background-color: var(--blue) !important;
+}
+
+.link-color{
+    color: var(--white) !important
+}
+
+.text-black{
+    color: var(--black) !important;
+}
+
+.btn{
+    font-weight: 700;
+    padding: .8rem, 1rem;
+    border: 0;
+    border-radius: .4rem;
+}
+
+.btn-color{
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.btn-color:hover{
+	background: var(--light-blue);
+    color: var(--black);
+    opacity: .8;
+}
+
+.bg-form{
+    background-color: var(--white);
+}

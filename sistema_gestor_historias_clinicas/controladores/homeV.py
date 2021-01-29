@@ -21,7 +21,7 @@ def cargar_usuario(nro_documento):
         return services_login.obtener_aGeneral_id(nro_documento)
 
 
-
+ 
 
 
 

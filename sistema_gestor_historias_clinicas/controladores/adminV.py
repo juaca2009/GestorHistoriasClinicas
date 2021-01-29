@@ -7,6 +7,7 @@ from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
 from dtos.adminPDtos.actualizar_adminPDto import actualizar_adminPDto
 from dtos.adminPDtos.info_adminPDto import info_adminPDto
 from dtos.adminPDtos.aceptar_solicitudDto import aceptar_solicitudDto
+from dtos.adminPDtos.solicitud_clinicaTokenDto import solicitud_clinicaTokenDto
 
 admin_vista = Blueprint('admin_vista', __name__)
 
@@ -155,3 +156,11 @@ def adminSolicitudesClinicasAceptar(id):
     solicitud_info = services_solicitudes.obtener_solicitud(id)
     print(solicitud_info)
     return render_template("adminP/adminP_solicitudesAceptar.html", titulo='Admin Sistema', form=form, info=solicitud_info)
+
+
+@app.route("/solicitudesClinicas/token", methods = ["GET", "POST"])
+def solicitudClinicaToken():
+    form = solicitud_clinicaTokenDto()
+    Tdocumento = service_tdocumento.obtener_Tdocumento()
+    form.TdocumentoAc.choices = Tdocumento
+    return render_template("adminP/solicitud_clinicaToken.html", titulo='Admin Sistema', form=form)
