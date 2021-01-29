@@ -6,6 +6,7 @@ from dtos.adminPDtos.agregar_adimPDto import agregar_adimPDto
 from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
 from dtos.adminPDtos.actualizar_adminPDto import actualizar_adminPDto
 from dtos.adminPDtos.info_adminPDto import info_adminPDto
+from dtos.adminPDtos.aceptar_solicitudDto import aceptar_solicitudDto
 
 admin_vista = Blueprint('admin_vista', __name__)
 
@@ -143,3 +144,14 @@ def adminSolicitudesClinicasDel(id):
     services_solicitudes.eliminar_solicitud(id)
     return redirect(url_for('adminSolicitudesClinicas'))
 
+
+
+@app.route("/admin/solicitudesClinicas/aceptar/<int:id>", methods = ["GET", "POST"])
+@login_required
+def adminSolicitudesClinicasAceptar(id):
+    if session['tipo_cuenta'] != 'aGeneral':
+        return redirect(url_for('home'))
+    form = aceptar_solicitudDto()
+    solicitud_info = services_solicitudes.obtener_solicitud(id)
+    print(solicitud_info)
+    return render_template("adminP/adminP_solicitudesAceptar.html", titulo='Admin Sistema', form=form, info=solicitud_info)

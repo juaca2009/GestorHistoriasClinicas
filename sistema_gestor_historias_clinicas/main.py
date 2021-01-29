@@ -1,6 +1,6 @@
 from app import app
-from vistas.homeV import home_vista
-from vistas.adminV import admin_vista
+from controladores.homeV import home_vista
+from controladores.adminV import admin_vista
 
 
 app.register_blueprint(home_vista)
