@@ -34,4 +34,6 @@ class adminP_servicie():
         salida = self.__adminPRepo.actualizar_administrador(_id, _ciudad, _correo, _telefono)
         return list(salida[0].values())
 
-    
+    def crear_clinica(self, _nombre, _ciudad):
+        salida = self.__adminPRepo.crear_clinica( _nombre, _ciudad)
+        return list(salida[0].values())

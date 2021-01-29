@@ -68,3 +68,15 @@ class administradorGeneralRepository(administrador_general):
         self.__conexion.commit()
         cursor.close()
         return salida
+
+    def crear_clinica(self, _nombre, _ciudad):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            select insertar_clinica(%s, %s)
+            """,
+            (_nombre, _ciudad)
+        )
+        salida = cursor.fetchall()
+        cursor.close()
+        return salida[0]
