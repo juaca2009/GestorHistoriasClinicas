@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, g, url_for, flash, Blueprint
 from flask_login import current_user, login_required
 from app import app
-from services import service_adminP, service_ciudad, service_tdocumento, services_solicitudes
+from services import service_adminP, service_ciudad, service_tdocumento, services_solicitudes, services_adminC
 from dtos.adminPDtos.agregar_adimPDto import agregar_adimPDto
 from dtos.adminPDtos.eliminar_adminPDto import eliminar_adminPDto
 from dtos.adminPDtos.actualizar_adminPDto import actualizar_adminPDto
@@ -154,7 +154,14 @@ def adminSolicitudesClinicasAceptar(id):
         return redirect(url_for('home'))
     form = aceptar_solicitudDto()
     solicitud_info = services_solicitudes.obtener_solicitud(id)
-    print(solicitud_info)
+    if form.validate_on_submit():
+        id_clinica = service_adminP.crear_clinica(solicitud_info['nombre'], solicitud_info['ciudad.nombre'])
+        services_solicitudes.actualizar_estadoS(solicitud_info['id'])
+        token = services_solicitudes.generar_token(solicitud_info['id'], id_clinica[0])
+        #falta metodos envio mensaje con token
+        nombreC = solicitud_info['nombre']
+        flash(f'La solicitud de la clinica {nombreC} ha sido aceptada', 'success')
+        return redirect(url_for('adminSolicitudesClinicas'))
     return render_template("adminP/adminP_solicitudesAceptar.html", titulo='Admin Sistema', form=form, info=solicitud_info)
 
 
