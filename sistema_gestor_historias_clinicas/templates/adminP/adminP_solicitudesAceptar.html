@@ -1,0 +1,59 @@
+{% extends "adminP/adminP_layout.html" %}
+
+{% block cssPers %}
+  <link  rel="stylesheet" href="{{ url_for('static', filename='css/adminP_solicitudesAceptar.css') }}" type="text/css">
+{% endblock cssPers %}
+
+{% block contenido %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb nav-route">
+            <li class="breadcrumb-item"><a href="{{ url_for('adminSolicitudesClinicas') }}">Solicitudes Clinicas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Aceptar Solicitud Clinica</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 bg-form">
+            <h1 class="font-weight-bold text-black form-style-title mb-5 text-center mt-3">¿Seguro desea aceptar la siguiente solicitud? </h1>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Numero Solicitud</label>
+                            {{ form.idS(class="form-control", placeholder=info['id'], id="exampleInputEmail1", type="text", readonly=true) }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Nombre Clinica</label>
+                            {{ form.nombre(class="form-control", placeholder=info['nombre'], id="exampleInputEmail1", type="text", readonly=true) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Correo</label>
+                    {{ form.correo(class="form-control", placeholder=info['correo'], id="exampleInputEmail1", type="email", readonly=true) }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Ciudad</label>
+                            {{ form.ciudad(class="form-control", placeholder=info['ciudad.nombre'], id="exampleInputEmail1", type="text", readonly=true) }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-4">
+                            <label for="exampleInputEmail1" class="form-label font-weight-bold form-style-body">Direccion</label>
+                            {{ form.direccion(class="form-control", placeholder=info['direccion'], id="exampleInputEmail1", type="text", readonly=true) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    {{ form.submit(class="btn btn-success font-weight-bold w-100", type="submit") }}
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+{% endblock contenido %}
