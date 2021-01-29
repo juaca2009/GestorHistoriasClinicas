@@ -23,6 +23,6 @@ begin
     select codigo_postal into _cod_postal from ciudad where nombre = _ciudad;
     select clinica_maximo() into _id;
     insert into clinicas (id, nombre, cod_postal) values(_id, _nombre, _cod_postal);
-    return 1;
+    return _id;
 end; //
 delimiter ;
