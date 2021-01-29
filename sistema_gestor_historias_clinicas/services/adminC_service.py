@@ -1,5 +1,5 @@
 from repository.adminClinicoRepository import administradorClinicoRepository
-from dominios.administrador_clinico import administrador_clinico
+from dominios.administrador_clinica import administrador_clinica
 from app import encriptador
 
 class adminC_service():

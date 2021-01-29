@@ -78,5 +78,6 @@ class administradorGeneralRepository(administrador_general):
             (_nombre, _ciudad)
         )
         salida = cursor.fetchall()
+        self.__conexion.commit()
         cursor.close()
         return salida[0]

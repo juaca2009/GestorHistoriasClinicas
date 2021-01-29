@@ -158,15 +158,15 @@ def adminSolicitudesClinicasAceptar(id):
         id_clinica = service_adminP.crear_clinica(solicitud_info['nombre'], solicitud_info['ciudad.nombre'])
         services_solicitudes.actualizar_estadoS(solicitud_info['id'])
         token = services_solicitudes.generar_token(solicitud_info['id'], id_clinica[0])
-        #falta metodos envio mensaje con token
+        services_solicitudes.enviar_mensaje(token, solicitud_info['correo'])
         nombreC = solicitud_info['nombre']
         flash(f'La solicitud de la clinica {nombreC} ha sido aceptada', 'success')
         return redirect(url_for('adminSolicitudesClinicas'))
     return render_template("adminP/adminP_solicitudesAceptar.html", titulo='Admin Sistema', form=form, info=solicitud_info)
 
 
-@app.route("/solicitudesClinicas/token", methods = ["GET", "POST"])
-def solicitudClinicaToken():
+@app.route("/solicitudesClinicas/<token>", methods = ["GET", "POST"])
+def solicitudClinicaToken(token):
     form = solicitud_clinicaTokenDto()
     Tdocumento = service_tdocumento.obtener_Tdocumento()
     form.TdocumentoAc.choices = Tdocumento

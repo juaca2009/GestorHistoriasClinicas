@@ -36,4 +36,4 @@ class adminP_servicie():
 
     def crear_clinica(self, _nombre, _ciudad):
         salida = self.__adminPRepo.crear_clinica( _nombre, _ciudad)
-        return list(salida[0].values())
+        return list(salida.values())

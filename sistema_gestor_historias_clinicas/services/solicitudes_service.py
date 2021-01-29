@@ -1,6 +1,9 @@
 from repository.solicutudesRepository import solicitudesRepsitory
 from dominios.solicitudes import solicitudes
 from itsdangerous import TimedJSONWebSignatureSerializer as token
+from mail_config import mail
+from flask_mail import Message
+from flask import Flask, url_for
 from app import app
 
 class solicitudes_service():
@@ -25,7 +28,7 @@ class solicitudes_service():
         self.__solRepo.actualizar_estado(_id)
 
     def generar_token(self, _idS, _idC):
-        s = token.serializer(app.config['SECRET_KEY'], 86400)  #duracion del token 24 horas = 86400 segundos
+        s = token(app.config['SECRET_KEY'], 86400)  #duracion del token 24 horas = 86400 segundos
         return s.dumps({'solicitud_id': _idS, 'clinica_id': _idC}).decode('utf-8')
 
     def verificar_token(self, _token):
@@ -39,3 +42,13 @@ class solicitudes_service():
         temp.append(id_solicitud)
         temp.append(id_clinica)
         return temp
+
+    def enviar_mensaje(self, _token, _correo):
+        msg = Message('Activacion y Creacion de Administrador Clinico', 
+                       sender='hermesclinics2020@gmail.com',
+                       recipients=[_correo])
+        msg.body = f''' Para Terminar con el registro, por favor registre a su administrador en el siguiente link:
+        {url_for('solicitudClinicaToken', token=_token, _external=True)}
+        El link vence dentro de un plazo de 24 horas.
+        '''
+        mail.send(msg)
