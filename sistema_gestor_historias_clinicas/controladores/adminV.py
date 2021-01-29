@@ -92,7 +92,8 @@ def adminAgregar():
     form.ciudadAp.choices = ciudades
     form.TdocumentoAp.choices = Tdocumento
     if form.validate_on_submit():
-        bandera = service_adminP.agregar_adminP(form.nombreAp.data, form.apellidosAp.data, form.documentoAp.data, form.TdocumentoAp.data, form.email.data, form.telefonoAp.data, form.ciudadAp.data, form.contrasenaAp.data)
+        tipo = service_tdocumento.obtener_idTipo(form.TdocumentoAp.data)
+        bandera = service_adminP.agregar_adminP(form.nombreAp.data, form.apellidosAp.data, form.documentoAp.data, tipo['id'], form.email.data, form.telefonoAp.data, form.ciudadAp.data, form.contrasenaAp.data)
         if bandera[0] == 1:
             flash(f'Se ha registrado a {form.nombreAp.data}  {form.apellidosAp.data} satisfactoriamente.', 'success')
             return redirect(url_for('adminAdmin'))
@@ -167,7 +168,22 @@ def adminSolicitudesClinicasAceptar(id):
 
 @app.route("/solicitudesClinicas/<token>", methods = ["GET", "POST"])
 def solicitudClinicaToken(token):
+    datos = services_solicitudes.verificar_token(token)
+    if datos == None:
+        flash(f'Token invalido o vencido', 'danger')
+        return redirect(url_for('home'))
     form = solicitud_clinicaTokenDto()
     Tdocumento = service_tdocumento.obtener_Tdocumento()
     form.TdocumentoAc.choices = Tdocumento
+    if form.validate_on_submit():
+        tipo = service_tdocumento.obtener_idTipo(form.TdocumentoAc.data)
+        bandera = services_adminC.agregar_adminC(form.nombreAc.data, form.apellidosAc.data, form.documentoAc.data, tipo['id'], form.email.data, form.telefonoAc.data, datos[1], form.contrasenaAc.data)
+        if bandera[0] == 1:
+            services_solicitudes.eliminar_solicitud(datos[0])
+            flash(f'El administrador clinico {form.nombreAc.data} {form.apellidosAc.data} ha sido registrado', 'success')
+            return redirect(url_for('home'))
+        elif bandera[0] == 0:
+            flash(f'El correo ya se encuentra registrado', 'danger')
+        else:
+            flash(f'Ingrese un numero de documento valido', 'danger')
     return render_template("adminP/solicitud_clinicaToken.html", titulo='Admin Sistema', form=form)

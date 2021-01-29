@@ -12,7 +12,7 @@ class administradorClinicoRepository(administrador_clinica):
             """
             select insertar_adminC(%s, %s, %s, %s, %s, %s, %s, %s)
             """,
-            (_nombre, _apellidos, _documento, _tdocumento, _email, _telefono, _clinica, _contrasena)
+            (_documento, _tdocumento, _nombre, _apellidos, _email, _telefono, _clinica, _contrasena)
         )
         salida = cursor.fetchall()
         self.__conexion.commit()

@@ -14,3 +14,7 @@ class tipoDocumento_servicie():
             tipos_grupos.append(temp)
             cont = cont + 1
         return tipos_grupos
+
+    def obtener_idTipo(self, _nombre):
+        salida = self.__tipDRepo.obtener_idTipo(_nombre)
+        return salida

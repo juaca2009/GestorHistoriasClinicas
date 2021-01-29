@@ -16,3 +16,15 @@ class tipoDocumentoRepository(solicitudes):
         salida = cursor.fetchall()
         cursor.close()
         return salida 
+
+    def obtener_idTipo(self, _nombre):
+        cursor = self.__conexion.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(
+            """
+            select id from tipo_documento where nombre = %s;
+            """,
+            (_nombre)
+        )
+        salida = cursor.fetchall()
+        cursor.close()
+        return salida[0]

@@ -32,7 +32,7 @@ class solicitudes_service():
         return s.dumps({'solicitud_id': _idS, 'clinica_id': _idC}).decode('utf-8')
 
     def verificar_token(self, _token):
-        s = token.serializer(app.config['SECRET_KEY'])
+        s = token(app.config['SECRET_KEY'])
         try:
             id_solicitud = s.loads(_token)['solicitud_id']
             id_clinica = s.loads(_token)['clinica_id']
