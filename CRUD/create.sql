@@ -49,7 +49,7 @@ create table administrador_general(
     correo varchar(50),
     telefono varchar(10) not null,
     cod_postal int references ciudad(codigo_postal),
-    contrasena varchar(10) not null
+    contrasena varchar(90) not null
 );
 
 --tabla medicos
@@ -74,7 +74,7 @@ create table administrador_clinica(
     correo varchar(50),
     telefono varchar(10) not null,
     id_clinica int references clinicas(id),
-    contrasena varchar(10) not null
+    contrasena varchar(90) not null
 );
 
 -- tabla historias clinicas 
